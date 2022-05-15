@@ -7,5 +7,5 @@ DEBUG = False
 ALLOWED_HOSTS = ['pinterest-mamume.herokuapp.com']
 
 DATABASES = {
-    'default': dj_database_url.config()
+    'default': dj_database_url.config(conn_max_age=500)
 }
