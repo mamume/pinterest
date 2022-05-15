@@ -15,6 +15,7 @@ djangorestframework = "*"
 django-extensions = "*"
 drf-social-oauth2 = "*"
 pip = "*"
+gunicorn = "*"
 
 [dev-packages]
 autopep8 = "*"
