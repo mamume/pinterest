@@ -1,20 +1,19 @@
-import React,{ useEffect, useState } from 'react';
+import React from 'react';
 import styled from 'styled-components';
-import unsplash from './api/unsplash';
 
 
 function PinMain(props) {
 
-    let {urls} = props;
+    let { urls } = props;
     console.log(urls)
 
-    return ( 
+    return (
         <Wrapper>
             <Container>
-                <img src={urls} alt="pin_img_main_board"/>
+                <img src={urls} alt="pin_img_main_board" />
             </Container>
         </Wrapper>
-     );
+    );
 }
 
 export default PinMain;

@@ -70,7 +70,7 @@ export default function PrimarySearchAppBar(props) {
       setSubmitted(false)
       props.setPins(reserve)
     }
-  }, [searchValue, submitted])
+  }, [searchValue, submitted, props, reserve])
 
 
 
