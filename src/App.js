@@ -26,7 +26,6 @@ function App() {
   })
   const [authedUser, setAuthedUser] = useState({})
   const [pins, setPins] = useState([])
-  // const [boards, setBoards] = useState([])
 
   useEffect(() => {
     fetch(`${host}/account/details`, { headers })
@@ -40,17 +39,7 @@ function App() {
   }, [headers, host])
 
   const removeItem = (id) => {
-    // let idx;
     setPins(pins => pins.filter(item => item.id !== id))
-    // for (let i =0 ; i < pins.length; i++){
-    //   if( pins[i].id == id){
-    //     idx = i;
-    //   }
-    // }
-    // if(idx){
-
-    //   setPins(pins => pins.splice(idx, 1))
-    // }
   }
 
   const addItem = (item) => {
@@ -67,30 +56,17 @@ function App() {
         })
   }, [authedUser, host, headers])
 
-  // useEffect(() => {
-  //   if (authedUser && authedUser.id) {
-  //     fetch(`${host}/board/list?owner_id=${authedUser.id}`, { headers })
-  //       .then(res => res.json())
-  //       .then(data => setBoards(data))
-
-  //   }
-  // }, [authedUser, headers, host])
-
   const AuthRef = useRef();
   const runAuth = (type) => {
     AuthRef.current.handleClickOpen(type)
   }
 
-
-
   if (authedUser == null && window.location.href.search("http://localhost:3000/password-reset") === -1) AuthRef.current.state.open = true
-
 
   return (
     <Fragment>
       <Auth ref={AuthRef} />
       <CssBaseline />
-
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={{ authedUser, headers, setAuthedUser, setHeaders, host }}>
           <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
@@ -99,7 +75,6 @@ function App() {
               {authedUser
                 ?
                 <Routes>
-
                   <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
                   <Route path="/profile" element={<Profile addItem={addItem} />} />
                   <Route path="/settings/*" element={<Settings />} />
@@ -116,16 +91,10 @@ function App() {
                   </Routes>
                 </>
               }
-
             </Router>
           </Container>
         </UserContext.Provider>
-
-
       </ThemeProvider>
-
-
-
     </Fragment>
   );
 }
