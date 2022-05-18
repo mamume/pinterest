@@ -3,9 +3,7 @@ import styled from 'styled-components';
 
 
 function PinMain(props) {
-
     let { urls } = props;
-    console.log(urls)
 
     return (
         <Wrapper>

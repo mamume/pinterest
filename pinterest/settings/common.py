@@ -167,42 +167,12 @@ REST_FRAMEWORK = {
 }
 
 AUTHENTICATION_BACKENDS = (
-    # Others auth providers (e.g. Google, OpenId, etc)
-
-    # Google OAuth2
-    'social_core.backends.google.GoogleOAuth2',
-
-    # Facebook OAuth2
-    'social_core.backends.facebook.FacebookAppOAuth2',
-    'social_core.backends.facebook.FacebookOAuth2',
-
     # drf_social_oauth2
     'drf_social_oauth2.backends.DjangoOAuth2',
 
     # Django
     'django.contrib.auth.backends.ModelBackend',
 )
-
-# Facebook configuration
-SOCIAL_AUTH_FACEBOOK_KEY = '1730643360462848'
-SOCIAL_AUTH_FACEBOOK_SECRET = '43b6ce7faf505b063cc9b0913479ce9d'
-
-# Define SOCIAL_AUTH_FACEBOOK_SCOPE to get extra permissions from Facebook.
-# Email is not sent by default, to get it, you must request the email permission.
-SOCIAL_AUTH_FACEBOOK_SCOPE = ['email']
-SOCIAL_AUTH_FACEBOOK_PROFILE_EXTRA_PARAMS = {
-    'fields': 'id, name, email'
-}
-
-# Google configuration
-SOCIAL_AUTH_GOOGLE_OAUTH2_KEY = '679751054018-2l8lc8ijibfr7ammo77vfu59epohaiu9.apps.googleusercontent.com'
-SOCIAL_AUTH_GOOGLE_OAUTH2_SECRET = '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'
-
-# Define SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE to get extra permissions from Google.
-SOCIAL_AUTH_GOOGLE_OAUTH2_SCOPE = [
-    'https://www.googleapis.com/auth/userinfo.email',
-    'https://www.googleapis.com/auth/userinfo.profile',
-]
 
 
 SOCIAL_AUTH_USER_FIELDS = ['email', 'username', 'password']

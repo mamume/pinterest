@@ -37,7 +37,7 @@ function Homepage({ pins, addItem, removeItem }) {
 
   return (
     <Fragment>
-      {authedUser
+      {authedUser && pins.length > 0
         ? (
           <Fragment>
             <AddButton addItem={addItem} />

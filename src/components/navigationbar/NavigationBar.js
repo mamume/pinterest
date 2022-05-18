@@ -65,7 +65,7 @@ export default function PrimarySearchAppBar(props) {
     if (props.pins !== reserve && !submitted) {
       setReserve(props.pins)
     }
-    console.log(reserve);
+    // console.log(reserve);
     if (searchValue === "" && submitted) {
       setSubmitted(false)
       props.setPins(reserve)

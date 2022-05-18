@@ -1,29 +1,37 @@
 import React, { useEffect, useState } from 'react';
-import PinMain from './Pin_main';
-import unsplash from './api/unsplash';
+import PinMain from './PinMain';
 import './mainboard.css';
 import Masonry from 'react-masonry-component';
 import Styles from '../styles/Styles'
+import { createApi } from 'unsplash-js';
 
+const unsplash = createApi({
+    accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
+});
 
 function Mainboard() {
     const classes = Styles()
-    const [pins, setNewPins] = useState([]);
+    const [pins, setPins] = useState([]);
 
     function extractedValue(arr, prop) {
-        let extractValue = arr.map(item => item[prop]);
-        // let regularurls = extractValue.map(item => item['regular'])
-        // return regularurls;
-        let smallurls = extractValue.map(item => item['small'])
-        return smallurls
+        const extractValue = arr.map(item => item[prop]);
+        return extractValue.map(item => item['thumb'])
     }
 
     useEffect(() => {
         async function fetchData() {
-            const request = await unsplash.get("https://api.unsplash.com/photos?per_page=30");
-            let urls = extractedValue(request.data, 'urls');
-            setNewPins(urls)
-            return request
+            try {
+                const result = await unsplash.photos.list({ page: 2, perPage: 20 })
+
+                if (result.type === 'error') {
+                    throw new Error('Error fetching data from Unsplash')
+                }
+
+                const urls = extractedValue(result.response.results, 'urls');
+                setPins(urls);
+            } catch (error) {
+                console.log(error)
+            }
         }
         fetchData()
     }, []);
@@ -33,7 +41,7 @@ function Mainboard() {
         <Masonry className={classes.masonry}>
             {
                 pins.map(pin => {
-                    return <PinMain urls={pin} />
+                    return <PinMain urls={pin} key={pin} />
                 })
             }
         </Masonry>
