@@ -21,7 +21,7 @@ function Mainboard() {
     useEffect(() => {
         async function fetchData() {
             try {
-                const result = await unsplash.photos.list({ page: 2, perPage: 20 })
+                const result = await unsplash.photos.list({ page: 2, perPage: 25 })
 
                 if (result.type === 'error') {
                     throw new Error('Error fetching data from Unsplash')

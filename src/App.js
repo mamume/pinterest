@@ -30,9 +30,9 @@ function App() {
     fetch(`${host}/profile/list/`, { headers })
       .then(res => res.json())
       .then(data => {
-        console.log({ data: data })
-        if (data.username)
-          setAuthedUser(data)
+        console.log({ 'data[0]': data[0] })
+        if (data[0]?.username)
+          setAuthedUser(data[0])
         else
           setAuthedUser(null)
       })
@@ -61,10 +61,10 @@ function App() {
     AuthRef.current.handleClickOpen(type)
   }
 
-  useEffect(() => {
-    if (authedUser && window.location.href.search("http://localhost:3000/password-reset") === -1)
-      AuthRef.current.state.open = true
-  }, [authedUser])
+  // useEffect(() => {
+  //   if (authedUser && window.location.href.search("http://localhost:3000/password-reset") === -1)
+  //     AuthRef.current.state.open = true
+  // }, [authedUser])
   // if (authedUser && window.location.href.search("http://localhost:3000/password-reset") === -1)
   //   AuthRef.current.state.open = true
 
@@ -98,7 +98,7 @@ function App() {
           </Container>
         </UserContext.Provider>
       </ThemeProvider>
-    </Fragment>
+    </Fragment >
   );
 }
 
