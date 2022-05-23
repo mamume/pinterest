@@ -186,7 +186,8 @@ export default class Main extends React.Component {
                   textTransform: 'none'
                 }}
               >
-                Sign Up</Button>
+                Sign Up
+              </Button>
             </div>
           </form>
         </div>

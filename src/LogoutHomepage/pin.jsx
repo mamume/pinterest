@@ -4,7 +4,7 @@ import axios from 'axios';
 
 class Pin extends React.Component {
 
-    
+
     handelfocus = () => {
         let ftarget = document.getElementById("comment_controllers")
         ftarget.classList.add("comment_vis")
@@ -40,13 +40,13 @@ class Pin extends React.Component {
     }
 
     render() {
-        
+
 
         return (
             <React.Fragment>
                 <div className="container">
                     <div className="sides row">
-                        
+
                         <div className="left-side col-md-5">
                             <div className="modals_pin_pin">
                                 <div className="pin_image_pin">
@@ -132,9 +132,9 @@ class Pin extends React.Component {
                             <div className="bord_name">
                                 <div className="bord_items">
                                     <div className="comment_icon"><span>M</span></div>
-                                        <div className="bord_content">
-                                            <span>you saved to bord name</span>
-                                        </div>
+                                    <div className="bord_content">
+                                        <span>you saved to bord name</span>
+                                    </div>
                                 </div>
                             </div>
 
@@ -145,8 +145,8 @@ class Pin extends React.Component {
                     </div>
                 </div>
 
-                
-                
+
+
             </React.Fragment>
         );
     }

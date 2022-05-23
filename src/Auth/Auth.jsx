@@ -82,6 +82,7 @@ export default class Auth extends React.Component {
               console.log(res2)
               localStorage.setItem('pinterestAccessToken', res2.data.access)
               localStorage.setItem('pinterestRefreshToken', res2.data.refresh)
+              window.location.href = '/'
             })
         }
         // console.log(res)
@@ -89,7 +90,6 @@ export default class Auth extends React.Component {
         // localStorage.setItem('pinterestRefreshToken', res.data.refresh_token)
         // axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
         // localStorage.setItem('pinterestAccount', this.state.email)
-        // window.location.href = '/'
       }).catch(err => {
         console.log(err)
       })
@@ -268,9 +268,6 @@ export default class Auth extends React.Component {
     //   })
   }
 
-  componentWillUnmount() {
-  }
-
   switchScreen = (screen) => {
     this.setState({ Cscreen: screen })
   }
@@ -304,7 +301,7 @@ export default class Auth extends React.Component {
         this.state.Cscreen === "main" &&
         <Main switch={this.switchScreen} handle={this.handleClickOpen} open={this.state.open} close={this.handleClose} collect={this.collectFromMain} inputStyle={CssTextField} />
       }
-      {
+      {/* {
         this.state.Cscreen === "first" &&
         <First switch={this.switchScreen} handle={this.handleClickOpen} open={this.state.open} collect={this.collectFromFirst} inputStyle={CssTextField} email={this.state.email} />
       }
@@ -315,11 +312,11 @@ export default class Auth extends React.Component {
       {
         this.state.Cscreen === "third" &&
         <Third switch={this.switchScreen} open={this.state.open} close={this.handleClose} collect={this.collectFromThird} />
-      }
-      {
+      } */}
+      {/* {
         this.state.Cscreen === "savedLogin" &&
         <LoginSaved switch={this.switchScreen} ref={this.loginSavedRef} open={this.state.open} close={this.handleClose} collect={this.collectFromLoginSaved} email={this.state.loginEmail} inputStyle={CssTextField} />
-      }
+      } */}
       {
         this.state.Cscreen === "unsavedLogin" &&
         <LoginUnSaved switch={this.switchScreen} ref={this.loginUnSavedRef} open={this.state.open} close={this.handleClose} collect={this.collectFromLoginUnSaved} inputStyle={CssTextField} />
