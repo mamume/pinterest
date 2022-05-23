@@ -1,20 +1,21 @@
-from logging import StreamHandler
-from django.db.models import fields
-from rest_framework import serializers
-from django.contrib.auth import get_user_model
-from rest_framework.exceptions import AuthenticationFailed, ValidationError
-from account.models import *
+# from logging import StreamHandler
+# from django.db.models import fields
 from django.contrib.auth.password_validation import validate_password
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
-from django.utils.encoding import force_str, smart_str
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+from django.utils.encoding import smart_str
+from django.utils.http import urlsafe_base64_decode
+from rest_framework import serializers
+# from django.contrib.auth import get_user_model
+from rest_framework.exceptions import AuthenticationFailed, ValidationError
+
+from account.models import *
 
 
 class FollowingSerializer(serializers.ModelSerializer):
     followed_user = serializers.StringRelatedField()
 
     class Meta:
-        model = UserFollowing
+        # model = UserFollowing
         fields = ['id', 'followed_user', 'start_follow']
 
 
@@ -22,26 +23,26 @@ class FollowerSerializer(serializers.ModelSerializer):
     user = serializers.StringRelatedField()
 
     class Meta:
-        model = UserFollowing
+        # model = UserFollowing
         fields = ['id', 'user', 'start_follow']
 
 
 class NotificationSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Notification
+        # model = Notification
         fields = ['id', 'text', 'created_at']
 
 
 class MessageSerializer(serializers.ModelSerializer):
     class Meta:
-        model = Message
+        # model = Message
         fields = '__all__'
 
 
 class UserSerializer(serializers.ModelSerializer):
 
     class Meta:
-        model = UserProfile
+        # model = UserProfile
         fields = [
             'id',
             'email',
@@ -59,23 +60,23 @@ class UserSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {'password': {'write_only': True}}
 
-    def save(self, **kwargs):
-        user = UserProfile(
-            email=self.validated_data.get('email'),
-            username=self.validated_data.get('username'),
-            first_name=self.validated_data.get('first_name'),
-            last_name=self.validated_data.get('last_name'),
-            age=self.validated_data.get('age'),
-            bio=self.validated_data.get('bio'),
-            gender=self.validated_data.get('gender'),
-            country=self.validated_data.get('country'),
-            profile_pic=self.validated_data.get('profile_pic'),
-            website=self.validated_data.get('website')
-        )
+    # def save(self, **kwargs):
+        # user = UserProfile(
+        #     email=self.validated_data.get('email'),
+        #     username=self.validated_data.get('username'),
+        #     first_name=self.validated_data.get('first_name'),
+        #     last_name=self.validated_data.get('last_name'),
+        #     age=self.validated_data.get('age'),
+        #     bio=self.validated_data.get('bio'),
+        #     gender=self.validated_data.get('gender'),
+        #     country=self.validated_data.get('country'),
+        #     profile_pic=self.validated_data.get('profile_pic'),
+        #     website=self.validated_data.get('website')
+        # )
 
-        user.set_password(self.validated_data.get('password'))
-        user.save()
-        return user
+        # user.set_password(self.validated_data.get('password'))
+        # user.save()
+        # return user
 
 
 class UpdatePasswordSerializer(serializers.Serializer):
@@ -117,21 +118,21 @@ class resetPasswordCompleteSerializer(serializers.Serializer):
             raise serializers.ValidationError(str(e), code=400)
         return value
 
-    def save(self, **kwargs):
+    # def save(self, **kwargs):
 
-        uid64 = self.validated_data['uid64']
-        token = self.validated_data['token']
-        id = smart_str(urlsafe_base64_decode(uid64))
-        user = UserProfile.objects.get(id=id)
-        print(user, token)
+    #     uid64 = self.validated_data['uid64']
+    #     token = self.validated_data['token']
+    #     id = smart_str(urlsafe_base64_decode(uid64))
+    #     # user = UserProfile.objects.get(id=id)
+    #     print(user, token)
 
-        if not PasswordResetTokenGenerator().check_token(user, token):
-            raise AuthenticationFailed(
-                detail='link has been expired', code=401)
+    #     if not PasswordResetTokenGenerator().check_token(user, token):
+    #         raise AuthenticationFailed(
+    #             detail='link has been expired', code=401)
 
-        user.set_password(self.validated_data['password'])
-        user.save()
-        return user
+    #     user.set_password(self.validated_data['password'])
+    #     user.save()
+    #     return user
 
 
 class UserDataSerializer(serializers.ModelSerializer):
@@ -140,7 +141,7 @@ class UserDataSerializer(serializers.ModelSerializer):
     notification = serializers.SerializerMethodField()
 
     class Meta:
-        model = UserProfile
+        # model = UserProfile
         fields = [
             'id',
             'email',
@@ -161,23 +162,23 @@ class UserDataSerializer(serializers.ModelSerializer):
         ]
         extra_kwargs = {'password': {'write_only': True}}
 
-    def save(self, **kwargs):
-        user = UserProfile(
-            email=self.validated_data.get('email'),
-            username=self.validated_data.get('username'),
-            first_name=self.validated_data.get('first_name'),
-            last_name=self.validated_data.get('last_name'),
-            age=self.validated_data.get('age'),
-            bio=self.validated_data.get('bio'),
-            gender=self.validated_data.get('gender'),
-            country=self.validated_data.get('country'),
-            profile_pic=self.validated_data.get('profile_pic'),
-            website=self.validated_data.get('website')
-        )
+    # def save(self, **kwargs):
+    #     # user = UserProfile(
+    #     #     email=self.validated_data.get('email'),
+    #     #     username=self.validated_data.get('username'),
+    #     #     first_name=self.validated_data.get('first_name'),
+    #     #     last_name=self.validated_data.get('last_name'),
+    #     #     age=self.validated_data.get('age'),
+    #     #     bio=self.validated_data.get('bio'),
+    #     #     gender=self.validated_data.get('gender'),
+    #     #     country=self.validated_data.get('country'),
+    #     #     profile_pic=self.validated_data.get('profile_pic'),
+    #     #     website=self.validated_data.get('website')
+    #     # )
 
-        user.set_password(self.validated_data.get('password'))
-        user.save()
-        return user
+    #     user.set_password(self.validated_data.get('password'))
+    #     user.save()
+    #     return user
 
     def get_following(self, obj):
         if obj.following:

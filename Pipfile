@@ -4,20 +4,21 @@ verify_ssl = true
 name = "pypi"
 
 [packages]
-django = "*"
 django-debug-toolbar = "*"
 psycopg2-binary = "*"
-python-decouple = "*"
 pillow = "*"
 django-cors-headers = "*"
 django-countries = "*"
 djangorestframework = "*"
 django-extensions = "*"
-drf-social-oauth2 = "*"
 pip = "*"
 gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
+djoser = "*"
+drf-social-oauth2 = "*"
+django = "==3.2.9"
+djangorestframework-simplejwt = "*"
 
 [dev-packages]
 autopep8 = "*"

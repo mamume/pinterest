@@ -21,20 +21,19 @@ export default class LoginUnSaved extends React.Component {
     this.validator = new SimpleReactValidator()
     this.state = {
       loginEmail: "",
+      loginUsername: "",
       loginPassword: "",
       loginFaild: false,
     }
   }
 
   collectInput = (e) => {
-
     this.setState({ [e.target.name]: e.target.value });
-
   }
 
   sendData = () => {
     let data = {
-      loginEmail: this.state.loginEmail,
+      loginUsername: this.state.loginUsername,
       loginPassword: this.state.loginPassword,
     }
     if (this.validator.allValid()) {
@@ -43,13 +42,7 @@ export default class LoginUnSaved extends React.Component {
       this.validator.showMessages()
       this.forceUpdate()
     }
-
-
   }
-
-
-
-
 
   render() {
     return <Dialog open={this.props.open} maxWidth='xs' fullWidth={false}>
@@ -84,26 +77,24 @@ export default class LoginUnSaved extends React.Component {
         <div style={{ width: "80%", textAlign: "center", margin: 'auto', marginTop: '0.5rem', }}>
           {
             this.state.loginFaild === true &&
-            <Alert severity="error">login failed check email and password again</Alert>
+            <Alert severity="error">login failed check username and password again</Alert>
           }
         </div>
         <div style={{ width: "70%", textAlign: "center", margin: 'auto', marginTop: '0.5rem' }}>
-
           <TextField
-
             autoFocus
             required
             sx={this.props.inputStyle}
             margin="dense"
-            name="loginEmail"
-            id="email"
-            label="Email Address"
-            type="email"
+            name="loginUsername"
+            id="username"
+            label="Username"
+            type="text"
             fullWidth
             variant="outlined"
-            value={this.state.loginEmail}
+            // value={this.state.loginUsername}
             onChange={this.collectInput}
-            helperText={this.validator.message('email', this.state.loginEmail, 'required|email', { style: { color: 'red' } })}
+            helperText={this.validator.message('Username', this.state.loginUsername, 'required', { style: { color: 'red' } })}
           />
           <TextField
             required
@@ -117,7 +108,7 @@ export default class LoginUnSaved extends React.Component {
             variant="outlined"
             value={this.state.loginPassword}
             onChange={this.collectInput}
-            helperText={this.validator.message("password", this.state.loginPassword, "required|min:8")}
+            helperText={this.validator.message("password", this.state.loginPassword, "required")}
           />
           <DialogContentText ml={1} sx={{ textAlign: "left" }}>
             <Typography variant="subtitle2"><a href="http://localhost:3000/password-reset">Forgot your password?</a>

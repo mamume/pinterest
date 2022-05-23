@@ -25,9 +25,11 @@ urlpatterns = [
     path('__debug__/', include(debug_toolbar.urls)),
     path('board/', include('board.urls')),
     path('account/', include('account.api.v1.urls')),
-    path('profile/', include('user_profile.urls')),
+    # path('profile/', include('user_profile.urls')),
     path('pin/', include('pin.api.v1.urls')),
-    re_path('.*', TemplateView.as_view(template_name='index.html')),
+    path('auth/', include('djoser.urls')),
+    path('auth/', include('djoser.urls.jwt')),
+    # re_path('.*', TemplateView.as_view(template_name='index.html')),
 ]
 
 if settings.DEBUG:

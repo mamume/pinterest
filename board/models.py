@@ -1,5 +1,6 @@
 from django.db import models
-from account.models import UserProfile
+
+# from account.models import UserProfile
 from pin.models import Pin
 
 
@@ -13,15 +14,15 @@ class Board(models.Model):
 
     pins = models.ManyToManyField(Pin, blank=True)
     collaborators = models.ManyToManyField('Collaborator', blank=True)
-    owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    # owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.title
 
 
 class Collaborator(models.Model):
-    user = models.OneToOneField(
-        UserProfile, primary_key=True, on_delete=models.CASCADE)
+    # user = models.OneToOneField(
+    # UserProfile, primary_key=True, on_delete=models.CASCADE)
     is_super = models.BooleanField(default=False)
     can_invite = models.BooleanField(default=False)
 
@@ -32,7 +33,7 @@ class Collaborator(models.Model):
 class Note(models.Model):
     title = models.CharField(max_length=255)
     text = models.TextField(null=True, blank=True)
-    ckecklist = models.JSONField(null=True, blank=True)
+    checkList = models.JSONField(null=True, blank=True)
     board = models.ForeignKey(Board, on_delete=models.CASCADE)
 
     def __str__(self) -> str:

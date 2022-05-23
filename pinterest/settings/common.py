@@ -11,9 +11,8 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os
+from datetime import timedelta
 from pathlib import Path
-
-from decouple import config
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
@@ -37,11 +36,12 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'django.contrib.sites',
     'rest_framework',
+    'djoser',
 
     # custom_apps
     'board',
-    'account.apps.AccountConfig',
-    'user_profile',
+    'account',
+    # 'user_profile',
     'pin',
 
     # 3rd_party_tools
@@ -50,10 +50,10 @@ INSTALLED_APPS = [
     'django_extensions',
     'django_countries',
 
-    # Oauth2
-    'oauth2_provider',
-    'social_django',
-    'drf_social_oauth2',
+    # # Oauth2
+    # 'oauth2_provider',
+    # 'social_django',
+    # 'drf_social_oauth2',
 ]
 SITE_ID = 1
 
@@ -106,20 +106,20 @@ WSGI_APPLICATION = 'pinterest.wsgi.application'
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
-AUTH_PASSWORD_VALIDATORS = [
-    {
-        'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
-    },
-    {
-        'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
-    },
-]
+# AUTH_PASSWORD_VALIDATORS = [
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.UserAttributeSimilarityValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.MinimumLengthValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.CommonPasswordValidator',
+#     },
+#     {
+#         'NAME': 'django.contrib.auth.password_validation.NumericPasswordValidator',
+#     },
+# ]
 
 
 # Internationalization
@@ -152,27 +152,32 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'account.UserProfile'
+AUTH_USER_MODEL = 'account.User'
 
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
     'DEFAULT_AUTHENTICATION_CLASSES': (
-        'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
-        'drf_social_oauth2.authentication.SocialAuthentication',
+        'rest_framework_simplejwt.authentication.JWTAuthentication',
+        #     'oauth2_provider.contrib.rest_framework.OAuth2Authentication',
+        #     'drf_social_oauth2.authentication.SocialAuthentication',
     ),
-    'DEFAULT_PERMISSION_CLASSES': (
-        'rest_framework.permissions.IsAuthenticated',
-    ),
-
+    # 'DEFAULT_PERMISSION_CLASSES': (
+    #     'rest_framework.permissions.IsAuthenticated',
+    # ),
 }
 
-AUTHENTICATION_BACKENDS = (
-    # drf_social_oauth2
-    'drf_social_oauth2.backends.DjangoOAuth2',
+SIMPLE_JWT = {
+    'AUTH_HEADER_TYPES': ('JWT',),
+    'ACCESS_TOKEN_LIFETIME': timedelta(days=1),
+}
 
-    # Django
-    'django.contrib.auth.backends.ModelBackend',
-)
+# AUTHENTICATION_BACKENDS = (
+#     # drf_social_oauth2
+#     'drf_social_oauth2.backends.DjangoOAuth2',
+
+#     # Django
+#     'django.contrib.auth.backends.ModelBackend',
+# )
 
 
-SOCIAL_AUTH_USER_FIELDS = ['email', 'username', 'password']
+# SOCIAL_AUTH_USER_FIELDS = ['email', 'username', 'password']

@@ -1,15 +1,15 @@
-from django.db.models import fields
 from rest_framework import serializers
 
-from pin.models import Pin
-from .models import Board, Collaborator, Note, Section
-from account.models import UserProfile
+# from account.models import UserProfile
 from pin.api.v1.serializers import PinSerializer
+from pin.models import Pin
+
+from .models import Board, Collaborator, Note, Section
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        model = UserProfile
+        # model = UserProfile
         fields = ['id', 'username', 'profile_pic']
 
 
