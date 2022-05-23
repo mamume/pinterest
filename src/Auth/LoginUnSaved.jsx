@@ -8,7 +8,7 @@ import {
   DialogTitle,
   Typography,
   IconButton,
-  Divider,
+  // Divider,
   Alert
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
@@ -23,7 +23,7 @@ export default class LoginUnSaved extends React.Component {
       loginEmail: "",
       loginUsername: "",
       loginPassword: "",
-      loginFaild: false,
+      loginFailed: false,
     }
   }
 
@@ -77,8 +77,8 @@ export default class LoginUnSaved extends React.Component {
           </div>
           <div style={{ width: "80%", textAlign: "center", margin: 'auto', marginTop: '0.5rem', }}>
             {
-              this.state.loginFaild === true &&
-              <Alert severity="error">login failed check username and password again</Alert>
+              this.state.loginFailed === true &&
+              <Alert severity="error">login failed check username and password.</Alert>
             }
           </div>
           <div style={{ width: "70%", textAlign: "center", margin: 'auto', marginTop: '0.5rem' }}>
@@ -135,7 +135,7 @@ export default class LoginUnSaved extends React.Component {
 
             <DialogContentText>
               <Typography variant="caption">
-                <button className="asAnchor" onClick={() => this.props.switch('main')}>Not a pintersest yet? sign up</button>
+                <button className="asAnchor" onClick={() => this.props.switch('main')}>Not a user yet? sign up</button>
               </Typography>
             </DialogContentText>
           </div>

@@ -1,45 +1,46 @@
-# from rest_framework import serializers
+from rest_framework import serializers
 
-# from board.models import Board
-# from board.serializers import BoardSerializer
-# # from account.models import UserProfile, UserFollowing
-# from pin.api.v1.serializers import PinSerializer
-# from pin.models import Pin
+from board.models import Board
+from board.serializers import BoardSerializer
+from pin.api.v1.serializers import PinSerializer
+from pin.models import Pin
+
+from .models import Profile
 
 
-# class ProfileSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = UserProfile
-#         fields = ['id', 'full_name', 'profile_pic',
-#                   'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards']
+class ProfileSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'full_name', 'profile_pic',
+                  'user', 'bio', 'following_count', 'followers_count', 'pins', 'boards']
 
-#     full_name = serializers.SerializerMethodField('get_full_name')
-#     following_count = serializers.SerializerMethodField('get_following_count')
-#     followers_count = serializers.SerializerMethodField('get_followers_count')
-#     pins = serializers.SerializerMethodField('get_pins')
-#     boards = serializers.SerializerMethodField('get_boards')
+    full_name = serializers.SerializerMethodField('get_full_name')
+    following_count = serializers.SerializerMethodField('get_following_count')
+    followers_count = serializers.SerializerMethodField('get_followers_count')
+    pins = serializers.SerializerMethodField('get_pins')
+    boards = serializers.SerializerMethodField('get_boards')
 
-#     def get_boards(self, instance: UserProfile):
-#         serializer_context = {'request': self.context.get('request')}
-#         boards = Board.objects.filter(owner=instance)
-#         return BoardSerializer(boards, many=True, context=serializer_context).data
+    def get_boards(self, instance: Profile):
+        serializer_context = {'request': self.context.get('request')}
+        boards = Board.objects.filter(owner=instance)
+        return BoardSerializer(boards, many=True, context=serializer_context).data
 
-#     def get_pins(self, instance: UserProfile):
-#         serializer_context = {'request': self.context.get('request')}
-#         pins = Pin.objects.filter(owner=instance)
-#         return PinSerializer(pins, many=True, context=serializer_context).data
+    def get_pins(self, instance: Profile):
+        serializer_context = {'request': self.context.get('request')}
+        pins = Pin.objects.filter(owner=instance)
+        return PinSerializer(pins, many=True, context=serializer_context).data
 
-#     def get_full_name(self, instance: UserProfile):
-#         if instance.first_name or instance.last_name:
-#             return f"{instance.first_name} {instance.last_name}"
-#         else:
-#             return None
+    def get_full_name(self, instance: Profile):
+        if instance.first_name or instance.last_name:
+            return f"{instance.first_name} {instance.last_name}"
+        else:
+            return None
 
-#     def get_following_count(self, instance: UserProfile):
-#         return UserFollowing.objects.filter(user=instance).count()
+    def get_following_count(self, instance: Profile):
+        return UserFollowing.objects.filter(user=instance).count()
 
-#     def get_followers_count(self, instance: UserProfile):
-#         return UserFollowing.objects.filter(followed_user=instance).count()
+    def get_followers_count(self, instance: Profile):
+        return UserFollowing.objects.filter(followed_user=instance).count()
 
 
 # class UserFollowersSerializer(serializers.ModelSerializer):
@@ -51,7 +52,7 @@
 
 #     def get_follower(self, instance: UserFollowing):
 #         serializer_context = {'request': self.context.get('request')}
-#         followers = UserProfile.objects.filter(pk=instance.user.id)
+#         followers = Profile.objects.filter(pk=instance.user.id)
 
 #         return FollowerData(followers, many=True, context=serializer_context).data
 
@@ -65,19 +66,19 @@
 
 #     def get_following(self, instance: UserFollowing):
 #         serializer_context = {'request': self.context.get('request')}
-#         following = UserProfile.objects.filter(pk=instance.followed_user.id)
+#         following = Profile.objects.filter(pk=instance.followed_user.id)
 
 #         return FollowerData(following, many=True, context=serializer_context).data
 
 
 # class FollowerData(serializers.ModelSerializer):
 #     class Meta:
-#         model = UserProfile
+#         model = Profile
 #         fields = ['id', 'username', 'full_name', 'profile_pic']
 
 #     full_name = serializers.SerializerMethodField('get_full_name')
 
-#     def get_full_name(self, instance: UserProfile):
+#     def get_full_name(self, instance: Profile):
 #         if instance.first_name or instance.last_name:
 #             return f"{instance.first_name} {instance.last_name}"
 #         else:
@@ -92,6 +93,6 @@
 
 # class ProfileUpdateSerializer(serializers.ModelSerializer):
 #     class Meta:
-#         model = UserProfile
+#         model = Profile
 #         fields = ['id', 'profile_pic', 'first_name', 'last_name', 'bio',
 #                   'website', 'username', 'email', 'country', 'gender']

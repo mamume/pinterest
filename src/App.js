@@ -26,16 +26,17 @@ function App() {
   const [authedUser, setAuthedUser] = useState(null)
   const [pins, setPins] = useState([])
 
-  // useEffect(() => {
-  //   fetch(`${host}/account/details`, { headers })
-  //     .then(res => res.json())
-  //     .then(data => {
-  //       if (data.username)
-  //         setAuthedUser(data)
-  //       else
-  //         setAuthedUser(null)
-  //     })
-  // }, [headers, host])
+  // TODO
+  useEffect(() => {
+    fetch(`${host}/account/details/`, { headers })
+      .then(res => res.json())
+      .then(data => {
+        if (data.username)
+          setAuthedUser(data)
+        else
+          setAuthedUser(null)
+      })
+  }, [headers, host])
 
   const removeItem = (id) => {
     setPins(pins => pins.filter(item => item.id !== id))

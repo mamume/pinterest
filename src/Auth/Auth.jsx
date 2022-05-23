@@ -216,7 +216,6 @@ export default class Auth extends React.Component {
   }
 
   collectFromLoginUnSaved = (obj) => {
-
     axiosInstance
       .post('auth/jwt/create', {
         username: obj.loginUsername,
@@ -230,7 +229,7 @@ export default class Auth extends React.Component {
         localStorage.setItem('pinterestRefreshToken', res.data.refresh)
         localStorage.setItem('pinterestAccount', obj.loginEmail)
         axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
-        // window.location.reload()
+        window.location.reload()
       }).catch(err => {
         console.log(err)
         this.loginUnSavedRef.current.state.loginFailed = true;

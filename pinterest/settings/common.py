@@ -40,8 +40,8 @@ INSTALLED_APPS = [
 
     # custom_apps
     'board',
-    'account',
-    # 'user_profile',
+    # 'account',
+    'user_profile',
     'pin',
 
     # 3rd_party_tools
@@ -152,7 +152,7 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 MEDIA_URL = '/media/'
 
-AUTH_USER_MODEL = 'account.User'
+AUTH_USER_MODEL = 'user_profile.User'
 
 REST_FRAMEWORK = {
     'COERCE_DECIMAL_TO_STRING': False,
