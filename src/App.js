@@ -17,26 +17,25 @@ import Auth from './Auth/Auth'
 import LogoutHomepage from './LogoutHomepage/App'
 
 
-
 function App() {
   const [host] = useState('http://localhost:8000')
   const [headers, setHeaders] = useState({
     'content-type': "application/json",
     'Authorization': `JWT ${localStorage.getItem('pinterestAccessToken')}`
   })
-  const [authedUser, setAuthedUser] = useState({})
+  const [authedUser, setAuthedUser] = useState(null)
   const [pins, setPins] = useState([])
 
-  useEffect(() => {
-    fetch(`${host}/account/details`, { headers })
-      .then(res => res.json())
-      .then(data => {
-        if (data.username)
-          setAuthedUser(data)
-        else
-          setAuthedUser(null)
-      })
-  }, [headers, host])
+  // useEffect(() => {
+  //   fetch(`${host}/account/details`, { headers })
+  //     .then(res => res.json())
+  //     .then(data => {
+  //       if (data.username)
+  //         setAuthedUser(data)
+  //       else
+  //         setAuthedUser(null)
+  //     })
+  // }, [headers, host])
 
   const removeItem = (id) => {
     setPins(pins => pins.filter(item => item.id !== id))
@@ -61,7 +60,12 @@ function App() {
     AuthRef.current.handleClickOpen(type)
   }
 
-  if (authedUser == null && window.location.href.search("http://localhost:3000/password-reset") === -1) AuthRef.current.state.open = true
+  useEffect(() => {
+    if (authedUser && window.location.href.search("http://localhost:3000/password-reset") === -1)
+      AuthRef.current.state.open = true
+  }, [authedUser])
+  // if (authedUser && window.location.href.search("http://localhost:3000/password-reset") === -1)
+  //   AuthRef.current.state.open = true
 
   return (
     <Fragment>
@@ -83,13 +87,11 @@ function App() {
                   <Route path='/pin/:id' element={<Pin />}> </Route>
                 </Routes>
                 :
-                <>
-                  <Routes>
-                    <Route path="/" exact element={<LogoutHomepage />} />
-                    <Route path="/password-reset" element={<PwReset />} />
-                    <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
-                  </Routes>
-                </>
+                <Routes>
+                  <Route path="/" exact element={<LogoutHomepage />} />
+                  <Route path="/password-reset" element={<PwReset />} />
+                  <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
+                </Routes>
               }
             </Router>
           </Container>

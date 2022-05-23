@@ -51,12 +51,48 @@ export default class Auth extends React.Component {
     this.setState({ open: false });
   }
   collectFromMain = (obj) => {
-    this.setState({
-      email: obj.email,
-      password: obj.password,
-      age: obj.age
-    });
+    // this.setState({
+    //   email: obj.email,
+    //   username: obj.username,
+    //   password: obj.password,
+    //   // age: obj.age
+    // });
 
+    const user = {
+      email: obj.email,
+      username: obj.username,
+      password: obj.password,
+      // age: this.state.age,
+      // gender: this.state.gender,
+      // country: country
+    }
+    // console.log(user)
+    const jsonUser = JSON.stringify(user)
+    axiosInstance
+      .post('/auth/users/', jsonUser)
+      .then(res => {
+        console.log({ 'res': res })
+        if (res.statusText === 'Created') {
+          axiosInstance
+            .post('auth/jwt/create/', JSON.stringify({
+              username: res.data.username,
+              password: user.password,
+            }))
+            .then(res2 => {
+              console.log(res2)
+              localStorage.setItem('pinterestAccessToken', res2.data.access)
+              localStorage.setItem('pinterestRefreshToken', res2.data.refresh)
+            })
+        }
+        // console.log(res)
+        // localStorage.setItem('pinterestAccessToken', res.data.access_token)
+        // localStorage.setItem('pinterestRefreshToken', res.data.refresh_token)
+        // axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
+        // localStorage.setItem('pinterestAccount', this.state.email)
+        // window.location.href = '/'
+      }).catch(err => {
+        console.log(err)
+      })
   }
 
   collectFromFirst = (username) => {
@@ -123,7 +159,6 @@ export default class Auth extends React.Component {
     //     console.log(json)
     //   }
     // })
-
   }
   collectFromLoginSaved = (password) => {
     // this.state.loginPassword = password
@@ -191,8 +226,8 @@ export default class Auth extends React.Component {
         // client_secret:"tjtDy1W4XoZ2EcF54X5ISKg0AAky7zksIqPmov2WSkxqDuWVWw6izZPhxJNLDtPCHBsw3xyr8huAT6xUQmQ62H2hP48yQwBkRLe8COfPF8c8eETQEHMoZR8ryeVk2TJ5",
       }).then(res => {
         console.log(res)
-        localStorage.setItem('pinterestAccessToken', res.data.access_token)
-        localStorage.setItem('pinterestRefreshToken', res.data.refresh_token)
+        localStorage.setItem('pinterestAccessToken', res.data.access)
+        localStorage.setItem('pinterestRefreshToken', res.data.refresh)
         localStorage.setItem('pinterestAccount', obj.loginEmail)
         axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
         // window.location.reload()

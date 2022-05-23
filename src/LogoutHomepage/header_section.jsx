@@ -5,7 +5,7 @@ function HeaderSection() {
 
     return (
         <Wrapper>
-            <div><span id="top">Get Your Next</span> <br /> Creative Idea</div>
+            <div><span id="top">Get Your Next Creative Idea</span></div>
         </Wrapper>
     );
 }
@@ -14,7 +14,7 @@ export default HeaderSection;
 
 const Wrapper = styled.div`
     div{
-        dispaly:flex;
+        display:flex;
         align-items:center;
         justify-content:center;
         font-size:2rem;
@@ -26,5 +26,4 @@ const Wrapper = styled.div`
             color:#e60023;
         }
     }
-    
 `
