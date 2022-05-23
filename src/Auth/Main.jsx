@@ -84,12 +84,16 @@ export default class Main extends React.Component {
           <PinterestIcon fontSize="large"
             sx={{
               color: '#e60023',
-              marginBottom: 2
-            }} />
-          <Typography variant="h4" sx={{ color: 'black' }}>
+              marginBottom: 10,
+              display: 'block',
+              margin: 'auto',
+            }}
+          />
+          <Typography component={'span'} variant="h4" sx={{ color: 'black' }}>
             Welcome to Pinterest
           </Typography>
-          <Typography variant="subtitle2">
+          <br />
+          <Typography component={'span'} variant="subtitle2">
             Find new ideas to try
           </Typography>
         </DialogContentText>
@@ -185,17 +189,12 @@ export default class Main extends React.Component {
                 Sign Up</Button>
             </div>
           </form>
-          <div style={{ width: "90%", margin: '1rem auto', textAlign: 'center' }}>
-            <Typography variant="caption">
-              By continuing you agree to pinterest's <button className="asAnchor">Terms of Service</button> and
-              acknowledge you've read our <button className="asAnchor">Privacy Policy</button>
-            </Typography>
-          </div>
-
         </div>
         <DialogContentText>
           <Typography variant="caption">
-            <button className="asAnchor" onClick={() => this.props.handle("login")}>Are you a member? Log in</button>
+            <button className="asAnchor" onClick={() => this.props.handle("login")}>
+              Are you a member? Log in
+            </button>
           </Typography>
         </DialogContentText>
       </DialogContent>

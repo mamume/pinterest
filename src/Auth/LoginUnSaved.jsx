@@ -70,7 +70,7 @@ export default class LoginUnSaved extends React.Component {
                 marginBottom: 2
               }} />
             <DialogContentText>
-              <Typography variant="h4" sx={{ fontWeight: 400 }}>
+              <Typography component={'span'} variant="h4" sx={{ fontWeight: 400 }}>
                 Welcome to Pinterest
               </Typography>
             </DialogContentText>
@@ -112,7 +112,8 @@ export default class LoginUnSaved extends React.Component {
               helperText={this.validator.message("password", this.state.loginPassword, "required")}
             />
             <DialogContentText ml={1} sx={{ textAlign: "left" }}>
-              <Typography variant="subtitle2"><a href="http://localhost:3000/password-reset">Forgot your password?</a>
+              <Typography component={'span'} variant="subtitle2">
+                <a href="http://localhost:3000/password-reset">Forgot your password?</a>
               </Typography>
             </DialogContentText>
 
@@ -127,22 +128,11 @@ export default class LoginUnSaved extends React.Component {
                 borderRadius: 10,
                 textTransform: 'none',
                 marginTop: '1.5rem',
-
               }}
             >
-              Next</Button>
+              Next
+            </Button>
 
-            <DialogContentText my={1}>
-              <Typography variant="h6">OR</Typography>
-            </DialogContentText>
-
-            <DialogContentText mt={2}>
-              <Typography variant="caption">
-                By continuing you agree to pinterest's <button className="asAnchor">Terms of Service</button> and
-                acknowledge you've read our <button className="asAnchor">Privacy Policy</button>
-              </Typography>
-            </DialogContentText>
-            <div style={{ width: '40%', margin: '1rem auto' }}><Divider /></div>
             <DialogContentText>
               <Typography variant="caption">
                 <button className="asAnchor" onClick={() => this.props.switch('main')}>Not a pintersest yet? sign up</button>
