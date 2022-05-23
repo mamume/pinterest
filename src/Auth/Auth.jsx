@@ -35,14 +35,16 @@ export default class Auth extends React.Component {
     if (type === "signup") {
       this.switchScreen("main")
     } else if (type === "login") {
-      if (localStorage.pinterestAccount) {
-        // this.state.loginEmail = localStorage.getItem('pinterestAccount')
-        // console.log(localStorage.getItem('pinterestAccount'))
-        // console.log(this.state.loginEmail)
-        this.setState({ loginEmail: localStorage.getItem('pinterestAccount') })
-        // this.setState({loginEmail:this.state.loginEmail})
-        this.switchScreen("savedLogin")
-      } else this.switchScreen("unsavedLogin")
+      // if (localStorage.pinterestAccount) {
+      //   // this.state.loginEmail = localStorage.getItem('pinterestAccount')
+      //   // console.log(localStorage.getItem('pinterestAccount'))
+      //   // console.log(this.state.loginEmail)
+      //   this.setState({ loginEmail: localStorage.getItem('pinterestAccount') })
+      //   // this.setState({loginEmail:this.state.loginEmail})
+      //   this.switchScreen("savedLogin")
+      // } else {
+      this.switchScreen("unsavedLogin")
+      // }
     }
   };
   handleClose = () => {
@@ -143,7 +145,7 @@ export default class Auth extends React.Component {
         window.location.reload()
       }).catch(err => {
         console.log(err)
-        this.loginSavedRef.current.state.loginFaild = true;
+        this.loginSavedRef.current.state.loginFailed = true;
         this.loginSavedRef.current.setState({ loginPassword: "" })
 
       })
@@ -196,7 +198,7 @@ export default class Auth extends React.Component {
         // window.location.reload()
       }).catch(err => {
         console.log(err)
-        this.loginUnSavedRef.current.state.loginFaild = true;
+        this.loginUnSavedRef.current.state.loginFailed = true;
         this.loginUnSavedRef.current.setState({ loginPassword: "" })
       })
 
@@ -233,8 +235,6 @@ export default class Auth extends React.Component {
   }
 
   componentWillUnmount() {
-
-
   }
 
   switchScreen = (screen) => {
