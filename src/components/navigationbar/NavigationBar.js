@@ -19,8 +19,6 @@ import { UserContext } from "../../context";
 import { Stack } from '@mui/material';
 
 
-
-
 const useStyles = makeStyles({
   link: {
     textDecoration: "inherit",
@@ -71,10 +69,6 @@ export default function PrimarySearchAppBar(props) {
       props.setPins(reserve)
     }
   }, [searchValue, submitted, props, reserve])
-
-
-
-
 
   //const [formData, setFormData] = useState({email: "", password: "", age:"", username={}, gender: "", country: "", language: "", loginEmail: "", loginPassword: ""})
 
@@ -229,22 +223,23 @@ export default function PrimarySearchAppBar(props) {
 
           </Link>
 
-          <SearchWrapper>
-
-            <SearchBarWrapper>
-              <IconButton>
-                <SearchIcon></SearchIcon>
-              </IconButton>
-
-              <form onSubmit={(e) => { handleSubmit(e) }}>
-                <input type="text" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Search..." />
-                <button type="submit" >Submit</button>
-              </form>
-
-            </SearchBarWrapper>
-          </SearchWrapper>
           {authedUser ?
             (<Fragment>
+
+              <SearchWrapper>
+
+                <SearchBarWrapper>
+                  <IconButton>
+                    <SearchIcon></SearchIcon>
+                  </IconButton>
+
+                  <form onSubmit={(e) => { handleSubmit(e) }}>
+                    <input type="text" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Search..." />
+                    <button type="submit" >Submit</button>
+                  </form>
+
+                </SearchBarWrapper>
+              </SearchWrapper>
               <Box sx={{ display: { md: 'flex' } }}>
                 {/* <IconButton
               size="large"
@@ -295,16 +290,13 @@ export default function PrimarySearchAppBar(props) {
           </IconButton> */}
 
 
-            </Fragment>) : (<Stack marginX={1} spacing={1} direction="row">
-
+            </Fragment>)
+            :
+            <Stack width={'100%'} marginX={1} spacing={1} direction="row-reverse">
               <Button onClick={() => runAuth("signup")}>Signup</Button>
               <Button variant="outlined" onClick={() => runAuth("login")}>Signin</Button>
-            </Stack>)}
-
-
-
-
-
+            </Stack>
+          }
         </Toolbar>
       </AppBar>
       {/* {renderMobileMenu} */}
