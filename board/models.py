@@ -1,7 +1,7 @@
 from django.db import models
 
-# from account.models import UserProfile
 from pin.models import Pin
+from user_profile.models import Profile
 
 
 class Board(models.Model):
@@ -14,7 +14,7 @@ class Board(models.Model):
 
     pins = models.ManyToManyField(Pin, blank=True)
     collaborators = models.ManyToManyField('Collaborator', blank=True)
-    # owner = models.ForeignKey(UserProfile, on_delete=models.CASCADE)
+    owner = models.ForeignKey(Profile, on_delete=models.CASCADE)
 
     def __str__(self) -> str:
         return self.title

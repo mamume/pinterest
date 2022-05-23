@@ -5,20 +5,21 @@ from board.serializers import BoardSerializer
 from pin.api.v1.serializers import PinSerializer
 from pin.models import Pin
 
-from .models import Profile
+from .models import Profile, UserFollowing
 
 
 class ProfileSerializer(serializers.ModelSerializer):
     class Meta:
         model = Profile
         fields = ['id', 'full_name', 'profile_pic',
-                  'user', 'bio', 'following_count', 'followers_count', 'pins', 'boards']
+                  'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards']
 
     full_name = serializers.SerializerMethodField('get_full_name')
     following_count = serializers.SerializerMethodField('get_following_count')
     followers_count = serializers.SerializerMethodField('get_followers_count')
     pins = serializers.SerializerMethodField('get_pins')
     boards = serializers.SerializerMethodField('get_boards')
+    username = serializers.SerializerMethodField('get_username')
 
     def get_boards(self, instance: Profile):
         serializer_context = {'request': self.context.get('request')}
@@ -42,6 +43,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_followers_count(self, instance: Profile):
         return UserFollowing.objects.filter(followed_user=instance).count()
 
+    def get_username(self, instance: Profile):
+        return instance.user.username
 
 # class UserFollowersSerializer(serializers.ModelSerializer):
 #     class Meta:

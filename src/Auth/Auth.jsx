@@ -127,7 +127,7 @@ export default class Auth extends React.Component {
         localStorage.setItem('pinterestAccessToken', res.data.access_token)
         localStorage.setItem('pinterestRefreshToken', res.data.refresh_token)
         axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
-        localStorage.setItem('pinterestAccount', this.state.email)
+        // localStorage.setItem('pinterestAccount', this.state.email)
         window.location.href = '/'
       }).catch(err => {
         console.log(err)
@@ -173,10 +173,10 @@ export default class Auth extends React.Component {
         client_id: "cPvFU0PqYK7nzAS8eJ0uwDHzq1voXNJB2Qs0xDWF",
         client_secret: "tjtDy1W4XoZ2EcF54X5ISKg0AAky7zksIqPmov2WSkxqDuWVWw6izZPhxJNLDtPCHBsw3xyr8huAT6xUQmQ62H2hP48yQwBkRLe8COfPF8c8eETQEHMoZR8ryeVk2TJ5",
       }).then(res => {
-        localStorage.setItem('pinterestAccessToken', res.data.access_token)
-        localStorage.setItem('pinterestRefreshToken', res.data.refresh_token)
-        localStorage.setItem('pinterestAccount', this.state.loginEmail)
-        axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
+        localStorage.setItem('pinterestAccessToken', res.data.access)
+        localStorage.setItem('pinterestRefreshToken', res.data.refresh)
+        // localStorage.setItem('pinterestAccount', this.state.loginEmail)
+        axiosFetchInstance.defaults.headers['Authorization'] = res.data.access
         window.location.reload()
       }).catch(err => {
         console.log(err)
@@ -227,8 +227,8 @@ export default class Auth extends React.Component {
         console.log(res)
         localStorage.setItem('pinterestAccessToken', res.data.access)
         localStorage.setItem('pinterestRefreshToken', res.data.refresh)
-        localStorage.setItem('pinterestAccount', obj.loginEmail)
-        axiosFetchInstance.defaults.headers['Authorization'] = res.data.access_token
+        // localStorage.setItem('pinterestAccount', obj.loginEmail)
+        axiosFetchInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
         window.location.reload()
       }).catch(err => {
         console.log(err)

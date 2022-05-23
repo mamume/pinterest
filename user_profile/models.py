@@ -29,3 +29,24 @@ class Profile(models.Model):
 
     def __str__(self):
         return self.user.username
+
+
+class UserFollowing(models.Model):
+    user = models.ForeignKey(
+        Profile, related_name='following', on_delete=models.CASCADE)
+    followed_user = models.ForeignKey(
+        Profile, related_name='follower', on_delete=models.CASCADE)
+    start_follow = models.DateTimeField(auto_now=True)
+
+    class Meta:
+        constraints = [
+            models.UniqueConstraint(
+                fields=['user', 'followed_user'], name='unique_followers'),
+            models.CheckConstraint(
+                check=~models.Q(user=models.F('followed_user')), name="users can't follow them selves"
+            ), ]
+        ordering = ['-start_follow']
+        verbose_name_plural = 'Users Following System'
+
+    def __str__(self):
+        return f"{self.user} start following {self.followed_user}"

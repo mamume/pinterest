@@ -16,19 +16,23 @@ class ProfileViewSet(ModelViewSet):
 
     def get_queryset(self):
         username = self.request.query_params.get('username')
-
+        # print(username)
         if username:
             return Profile.objects.filter(user__username=username)
 
-        return Profile.objects.filter(user=self.request.user)
-
-
-class ProfileDetailsViewSet(ModelViewSet):
-    serializer_class = ProfileSerializer
-    queryset = Profile.objects.all()
+        # print(Profile.objects.filter(user=self.request.user.id))
+        return Profile.objects.filter(user=self.request.user.id)
 
     def get_serializer_context(self):
         return {'request': self.request}
+
+
+# class ProfileDetailsViewSet(ModelViewSet):
+#     serializer_class = ProfileSerializer
+#     queryset = Profile.objects.all()
+
+#     def get_serializer_context(self):
+#         return {'request': self.request}
 
 
 # class FollowersViewSet(ModelViewSet):

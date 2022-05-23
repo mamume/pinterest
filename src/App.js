@@ -26,11 +26,11 @@ function App() {
   const [authedUser, setAuthedUser] = useState(null)
   const [pins, setPins] = useState([])
 
-  // TODO
   useEffect(() => {
-    fetch(`${host}/account/details/`, { headers })
+    fetch(`${host}/profile/list/`, { headers })
       .then(res => res.json())
       .then(data => {
+        console.log({ data: data })
         if (data.username)
           setAuthedUser(data)
         else
