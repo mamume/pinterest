@@ -30,7 +30,7 @@ function App() {
     fetch(`${host}/profile/list/`, { headers })
       .then(res => res.json())
       .then(data => {
-        console.log({ 'data[0]': data[0] })
+        // console.log({ 'data[0]': data[0] })
         if (data[0]?.username)
           setAuthedUser(data[0])
         else

@@ -35,7 +35,7 @@ import CircularProgress from '@mui/material/CircularProgress';
 // }
 
 
-const Pin = ({ open, onClose, removeItem, pinItem }) => {
+function Pin({ open, onClose, removeItem, pinItem }) {
 	const classes = Styles()
 	const [pin, setPin] = useState(pinItem)
 	const { authedUser, headers, host } = useContext(UserContext)
@@ -56,12 +56,18 @@ const Pin = ({ open, onClose, removeItem, pinItem }) => {
 	}, [pinItem])
 
 	useEffect(() => {
-		// if (pinItem) {
-		// console.log(pin.owner)
-		fetch(`${host}/profile/details/${pin.owner}`, { headers })
-			.then(res => res.json())
-			.then(data => setOwner(data))
-		// }
+		if (pin.owner) {
+			// console.log(pin.owner)
+			fetch(`${host}/profile/details/${pin.owner}`, { headers })
+				.then(res => {
+					// console.log({ res })
+					return res.json()
+				})
+				.then(data => {
+					// console.log({ data })
+					setOwner(data)
+				})
+		}
 	}, [headers, host, pin])
 
 	const handleDelete = () => {

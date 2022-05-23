@@ -27,12 +27,12 @@ class ProfileViewSet(ModelViewSet):
         return {'request': self.request}
 
 
-# class ProfileDetailsViewSet(ModelViewSet):
-#     serializer_class = ProfileSerializer
-#     queryset = Profile.objects.all()
+class ProfileDetailsViewSet(ModelViewSet):
+    serializer_class = ProfileSerializer
+    queryset = Profile.objects.all()
 
-#     def get_serializer_context(self):
-#         return {'request': self.request}
+    def get_serializer_context(self):
+        return {'request': self.request}
 
 
 # class FollowersViewSet(ModelViewSet):

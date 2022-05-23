@@ -5,8 +5,8 @@ from . import views
 
 router = SimpleRouter()
 router.register('list', views.ProfileViewSet, basename='profile-list')
-# router.register('details', views.ProfileDetailsViewSet,
-#                 basename='profile-details')
+router.register('details', views.ProfileDetailsViewSet,
+                basename='profile-details')
 # router.register('update', views.ProfileUpdateViewSet,
 #                 basename='profile-update')
 # router.register('followers', views.FollowersViewSet, basename='followers-list')
