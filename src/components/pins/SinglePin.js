@@ -19,10 +19,10 @@ import CreateBoard from '../profile/CreateBoard'
 
 
 
-function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }) {
-  const downloadImage = () => {
-    saveAs(img, 'image.jpg') // Put your image url here.
-  }
+function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, pinItem }) {
+  // const downloadImage = () => {
+  //   saveAs(img, 'image.jpg') // Put your image url here.
+  // }
   const { authedUser, headers, host } = useContext(UserContext)
 
   const classes = Styles()
@@ -54,6 +54,10 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
       setLinked(true)
     }
   }, [authedUser, subBoard])
+
+  const saveImage = (image, title) => {
+    saveAs(image, `${title}.jpg`)
+  }
 
   return (
     <>
@@ -112,7 +116,7 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
                 {/* <IconButton onClick={downloadImage}>
                   <DownloadIcon />
                 </IconButton> */}
-                <IconButton disableRipple sx={{ bgcolor: "white" }} onClick={downloadImage}>
+                <IconButton disableRipple sx={{ bgcolor: "white" }} onClick={() => saveImage(img, pinItem.title)}>
                   <DownloadIcon />
                 </IconButton>
               </div>
