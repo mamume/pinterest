@@ -154,14 +154,14 @@ const CardWrapper = styled.div`
     width: 250px;
 
     border-radius: 16px;
-    background-color: #efefef;
+    background-color: #808080;
     position: relative;
     overflow: hidden;
     space: no-wrap;
     margin: auto;
     &:hover{
         img{
-            opacity: 50%;
+            opacity: 90%;
         }
     }
 
@@ -173,16 +173,14 @@ const CardWrapper = styled.div`
         left: 50%;
         top: 50%;
         transform: translate(-50%, -50%);
-
         height:100%;
 
     }
 
     .myModal:hover{
         opacity: 100%;
-        postion: absolute;
+        position: absolute;
         z-index: 1000;
-
     }
     .my_modal_header{
         display: flex;
@@ -201,7 +199,6 @@ const CardWrapper = styled.div`
 
     .my_image_div:hover{
       cursor: pointer;
-
     }
 
     .my_modal_footer{
