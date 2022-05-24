@@ -1,9 +1,10 @@
-from rest_framework import serializers
-from pin.models import Pin, Category, Note, Section, PinNote, PinCategory, PinSection
-from django.http.response import HttpResponse
-from board.models import Board
-
+# from django.http.response import HttpResponse
 from django.shortcuts import get_object_or_404
+from rest_framework import serializers
+
+from board.models import Board
+from pin.models import (Category, Note, Pin, PinCategory, PinNote, PinSection,
+                        Section)
 
 
 class NoteSerializer(serializers.ModelSerializer):
@@ -45,7 +46,7 @@ class SectionSerializer(serializers.ModelSerializer):
 class BoardSerializer(serializers.ModelSerializer):
     class Meta:
         model = Board
-        fields = ['title', 'id','owner' ]
+        fields = ['title', 'id', 'owner']
 
 
 class PinSerializer(serializers.ModelSerializer):

@@ -154,14 +154,14 @@ const CardWrapper = styled.div`
     width: 250px;
 
     border-radius: 16px;
-    background-color: #808080;
+    background-color: black;
     position: relative;
     overflow: hidden;
     space: no-wrap;
     margin: auto;
     &:hover{
         img{
-            opacity: 90%;
+            opacity: 80%;
         }
     }
 

@@ -134,7 +134,7 @@ function PublicProfile() {
       <TextField
         fullWidth
         label="Username"
-        helperText={`www.pinterest.com/${username}`}
+        helperText={`www.pinterest.com/profile/${username}`}
         value={username}
         onChange={e => setUsername(e.target.value)}
       />

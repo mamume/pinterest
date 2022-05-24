@@ -105,7 +105,7 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
             //headers["content-type"] ='multipart/form-data; boundary=something' ;
             // console.log(headers.Authorization)
             // console.log(authedUser)
-            fd.append('content_src', image, image.name)
+            fd.append('content_src', image, image.name.slice(0, 100))
             fd.append('title', title)
             fd.append('content_type', 'image')
             fd.append('owner', authedUser.id)
@@ -131,7 +131,9 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
                 fetch(`${host}/pin/create`, {
                     method: 'POST',
                     body: fd,
-                    headers: { 'Authorization': headers.Authorization }
+                    headers: {
+                        'Authorization': headers.Authorization
+                    }
                 })
                     //axios.post('http://localhost:8000/pin/create', fd)
                     .then(response => response.json())

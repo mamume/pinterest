@@ -1,13 +1,15 @@
+# from collections import OrderedDict
+
 from django.http.response import HttpResponse, JsonResponse
-from rest_framework.decorators import api_view
-from rest_framework.response import Response
-from rest_framework import status
-from rest_framework import viewsets
-from pin.models import Pin, Note, Category, Section
-from .serializers import PinSerializer, NoteSerializer, CategorySerializer, SectionSerializer
-from collections import OrderedDict
+from rest_framework import status, viewsets
 from rest_framework.decorators import api_view, permission_classes
+from rest_framework.response import Response
+
 from board.models import Board
+from pin.models import Category, Note, Pin, Section
+
+from .serializers import (CategorySerializer, NoteSerializer, PinSerializer,
+                          SectionSerializer)
 
 #############################################################################################################################
 # Start of Pin CRUD
@@ -21,7 +23,7 @@ def link_board(request):
         print(request.data.dict().get('pin_id'))
         pin_id = int(request.data.dict().get('pin_id'))
         board_id = int(request.data.dict().get('board_id'))
-        temp = request.data.dict()
+        # temp = request.data.dict()
 
         print(board_id)
         board = Board.objects.get(pk=board_id)
@@ -36,8 +38,8 @@ def link_board(request):
 # @permission_classes([])
 def pin_create(request):
     if request.method == 'POST':
-        print("blahblahlalhalhlahlalhla")
-        print(request.data)
+        # print("blahblahlalhalhlahlalhla")
+        # print(request.data)
         temp = request.data
         temp = temp.dict()
         board_id = temp.get("board_id")

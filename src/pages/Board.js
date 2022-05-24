@@ -86,7 +86,7 @@ function Board({ addItem }) {
                 <Stack direction="column" alignItems="center">
                   <Avatar src={coverImage || '/images/board_placeholder.png'} sx={{ width: 120, height: 120 }} size='large' alt="Profile Image">
                   </Avatar>
-                  <Stack direction='row' alignItems="baseline" spacing>
+                  <Stack direction='row' alignItems="baseline">
                     <Typography mt fontWeight="bold" variant="h4">{title}</Typography>
                     {isAuthedBoard && <>
                       <IconButton color="info" onClick={() => setOpenEditBoard(true)}>
