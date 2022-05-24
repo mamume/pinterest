@@ -74,9 +74,9 @@ function App() {
       <CssBaseline />
       <ThemeProvider theme={theme}>
         <UserContext.Provider value={{ authedUser, headers, setAuthedUser, setHeaders, host }}>
-          <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
-            <Router>
-              <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
+          <Router>
+            <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
+            <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
               {authedUser
                 ?
                 <Routes>
@@ -94,8 +94,8 @@ function App() {
                   <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
                 </Routes>
               }
-            </Router>
-          </Container>
+            </Container>
+          </Router>
         </UserContext.Provider>
       </ThemeProvider>
     </Fragment >

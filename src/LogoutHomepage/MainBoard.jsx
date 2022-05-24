@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import PinMain from './PinMain';
-import './mainboard.css';
+import './mainBoard.css';
 import Masonry from 'react-masonry-component';
 import Styles from '../styles/Styles'
 import { createApi } from 'unsplash-js';
@@ -9,7 +9,7 @@ const unsplash = createApi({
     accessKey: process.env.REACT_APP_UNSPLASH_ACCESS_KEY,
 });
 
-function Mainboard() {
+function MainBoard() {
     const classes = Styles()
     const [pins, setPins] = useState([]);
 
@@ -48,4 +48,4 @@ function Mainboard() {
     );
 }
 
-export default Mainboard;
+export default MainBoard;

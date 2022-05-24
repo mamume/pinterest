@@ -209,65 +209,56 @@ export default function PrimarySearchAppBar(props) {
   // );
 
   return (
-    <Box sx={{ flexGrow: 1 }} style={{ margin: 0, position: "fixed", top: 0, left: 0, width: "100%", zIndex: 1250 }}>
-
-      <AppBar position="static" color="text">
-        <Toolbar>
-          <Link to="/">
-            <LogoWrapper>
-              <IconButton>
-                <PinterestIcon />
-              </IconButton>
-            </LogoWrapper>
-
-
-          </Link>
-
-          {authedUser ?
-            (<Fragment>
-
-              <SearchWrapper>
-
-                <SearchBarWrapper>
-                  <IconButton>
-                    <SearchIcon></SearchIcon>
-                  </IconButton>
-
-                  <form onSubmit={(e) => { handleSubmit(e) }}>
-                    <input type="text" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Search..." />
-                    <button type="submit" >Submit</button>
-                  </form>
-
-                </SearchBarWrapper>
-              </SearchWrapper>
-              <Box sx={{ display: { md: 'flex' } }}>
-                {/* <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
+    // <Box
+    // sx={{
+    // overflow: "hidden",
+    // position: "fixed",
+    // // mr: "300px",
+    // width: "100%",
+    // // backgroundColor: "white",
+    // zIndex: "1",
+    // }}
+    // >
+    <AppBar color="text" sx={{ boxShadow: '0px 0px', mr: 1.9 }}>
+      <Toolbar>
+        <Link to="/">
+          <LogoWrapper>
+            <IconButton>
+              <PinterestIcon />
             </IconButton>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton> */}
-                <IconButton
-                  size="large"
-                  edge="end"
-                  aria-label="account of current user"
-                  aria-controls={menuId}
-                  aria-haspopup="true"
-                  onClick={handleProfileMenuOpen}
-                  color="inherit"
-                >
-                  {authedUser ? <Avatar alt="Remy Sharp" src={profilePicture} /> : <div></div>}
+          </LogoWrapper>
+        </Link>
+
+        {authedUser
+          ?
+          <Fragment>
+            <SearchWrapper>
+              <SearchBarWrapper>
+                <IconButton>
+                  <SearchIcon></SearchIcon>
                 </IconButton>
-              </Box>
-              {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
+
+                <form onSubmit={(e) => { handleSubmit(e) }}>
+                  <input type="text" value={searchValue} onChange={(e) => { setSearchValue(e.target.value) }} placeholder="Search..." />
+                  <button type="submit" >Submit</button>
+                </form>
+
+              </SearchBarWrapper>
+            </SearchWrapper>
+            <Box sx={{ display: { md: 'flex' } }}>
+              <IconButton
+                size="large"
+                edge="end"
+                aria-label="account of current user"
+                aria-controls={menuId}
+                aria-haspopup="true"
+                onClick={handleProfileMenuOpen}
+                color="inherit"
+              >
+                <Avatar alt="Remy Sharp" src={profilePicture} />
+              </IconButton>
+            </Box>
+            {/* <Box sx={{ display: { xs: 'flex', md: 'none' } }}>
                 <IconButton
                   size="large"
                   aria-label="show more"
@@ -279,7 +270,7 @@ export default function PrimarySearchAppBar(props) {
                   <MoreIcon />
                 </IconButton>
               </Box> */}
-              {/* <IconButton
+            {/* <IconButton
             size="large"
             edge="start"
             color="inherit"
@@ -290,19 +281,20 @@ export default function PrimarySearchAppBar(props) {
           </IconButton> */}
 
 
-            </Fragment>)
-            :
+            {renderMenu}
+          </Fragment>
+          :
+          <>
             <Stack width={'100%'} marginX={1} spacing={1} direction="row-reverse">
               <Button onClick={() => runAuth("signup")}>Signup</Button>
               <Button variant="outlined" onClick={() => runAuth("login")}>Signin</Button>
             </Stack>
-          }
-        </Toolbar>
-      </AppBar>
-      {/* {renderMobileMenu} */}
-      {renderMenu}
-
-    </Box >
+          </>
+        }
+      </Toolbar>
+    </AppBar>
+    // {/* {renderMobileMenu} */ }
+    // </Box>
   );
 };
 
