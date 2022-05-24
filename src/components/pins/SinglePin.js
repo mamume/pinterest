@@ -19,12 +19,7 @@ import CreateBoard from '../profile/CreateBoard'
 
 
 
-
 function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }) {
-  // const newTo = {
-  //   pathname: url ? url : `/pin/${id}`,
-  //   state: { id: id }
-  // };
   const downloadImage = () => {
     saveAs(img, 'image.jpg') // Put your image url here.
   }
@@ -35,13 +30,6 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
   const [linked, setLinked] = useState(false)
   const [subBoard, setSubBoard] = useState(sub_board)
   const [openCreateBoard, setOpenCreateBoard] = useState(false)
-  // const [open, setOpen] = useState(false)
-  // const onClose = () => setOpen(false)
-  // const onOpen = () => setOpen(true)
-
-  // onClose={onClose}
-  //       open={open}
-  // const [update, setUpdate] = useState(false)
 
 
   const handlePost = () => {
@@ -56,20 +44,12 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
     })
       .then(response => response.json())
       .then(() => {
-        // setUpdatePins(prev => !prev)
-        // setUpdate(prev => !prev)
         setSubBoard(boards.filter(board => board.id === savedBoard)[0])
         setLinked(true)
-        //console.log(savedBoard)
-        // console.log(subBoard)
-        // console.log(authedUser)
-        // sub_board = { id: savedBoard, title: boards[savedBoard].title }
       })
   }
 
   useEffect(() => {
-    // console.log(authedUser)
-    // console.log(subBoard)
     if (subBoard !== "None" && authedUser.id === subBoard.owner) {
       setLinked(true)
     }
@@ -80,14 +60,11 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
       <Wrapper>
         <CardWrapper className={classes.pin}>
           <div className="myModal">
-            {/* <div className="my_modal_header"> */}
             <Stack direction='row' justifyContent="space-between" p={1} spacing={1}>
-              {/* <div> */}
               {linked
                 ? <Fragment>
                   <Link
                     to={`/board?board_id=${subBoard.id}`}
-                    // style={{ display: "inline-block", width: "130px", overflow: "hidden", whiteSpace: "nowrap", color: "white", textDecoration: "none", fontWeight: "700", fontSize: "20px" }}
                     className={classes.link}
                   >
                     <Box sx={{ bgcolor: "white", borderRadius: 1, p: "5px" }}>
@@ -121,20 +98,8 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
                       : <Button size="small" onClick={() => setOpenCreateBoard(true)}>Create Board</Button>
                   }</>}
             </Stack>
-            {/* // }</> */}
-            {/* // </div> */}
-            {/* // <div className="Two"></div> */}
-            {/* // <div className="Three"> */}
-            {/* // {linked
-                // ? <Button style={{ color: "white", backgroundColor: "black" }}>Saved</Button>
-                // : <Button onClick={handlePost}>Save</Button>
-              // } */}
-            {/* // </div> */}
-            {/* </div> */}
-            {/* <Link to={newTo}> */}
 
             <div style={{ display: "flex", height: "100%" }} onClick={onOpenPinModal} className="my_image_div"></div>
-            {/* </Link> */}
             <div className="my_modal_footer">
               {external_link && (<a href={external_link}><div className="my_ext" style={{ position: "absolute", float: "left", bottom: "15px", left: "15px" }} >
                 <IconButton>
@@ -144,23 +109,19 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board }
               </div> </a>)}
 
               <div className="my_send" style={{ position: "absolute", float: "right", bottom: "15px", right: "15px" }}>
-                <IconButton onClick={downloadImage}>
+                {/* <IconButton onClick={downloadImage}>
+                  <DownloadIcon />
+                </IconButton> */}
+                <IconButton disableRipple sx={{ bgcolor: "white" }} onClick={downloadImage}>
                   <DownloadIcon />
                 </IconButton>
               </div>
-
-              {/* <div className="my_options">
-              <IconButton>
-                <MoreVertIcon />
-              </IconButton>
-            </div> */}
             </div>
           </div>
 
           <img style={{ minHeight: 236, }} src={img} alt="" />
         </CardWrapper>
       </Wrapper >
-      {/* <Pin pinItem={pinItem} open={open} onClose={onClose} id={id} removeItem={removeItem} /> */}
       < CreateBoard
         openCreateBoard={openCreateBoard}
         closeCreateBoard={() => setOpenCreateBoard(false)

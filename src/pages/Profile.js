@@ -75,9 +75,9 @@ function Profile({ addItem }) {
     fetch(`${host}/profile/following/`, { headers })
       .then(res => res.json())
       .then(data => {
-        console.log({ data })
+        // console.log({ data })
         const followingUsers = data[0]?.following
-        console.log({ followingUsers })
+        // console.log({ followingUsers })
         try {
           for (const user of followingUsers) {
             if (user.username === userName) {
