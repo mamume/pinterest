@@ -143,7 +143,7 @@ export default function PrimarySearchAppBar(props) {
       onClose={handleMenuClose}
     >
 
-      <Link to="/profile" className={classes.link}>
+      <Link to="/profile/" className={classes.link}>
         <MenuItem onClick={handleMenuClose}>
           Profile
         </MenuItem>

@@ -1,6 +1,6 @@
 import { Avatar, Button, Divider, Stack, Typography } from "@mui/material";
 import React, { Fragment, useContext, useEffect, useState } from "react";
-import { Link } from 'react-router-dom'
+import { Link, useParams } from 'react-router-dom'
 import NotFound from './NotFound'
 import ShareButton from '../components/profile/ShareButton'
 import FollowersModal from '../components/profile/FollowersModal'
@@ -21,7 +21,7 @@ function Profile({ addItem }) {
 
   const [fullName, setFullName] = useState('')
   const [followingNum, setFollowingNum] = useState(0)
-  const [followersNum, setFollwersNum] = useState(0)
+  const [followersNum, setFollowersNum] = useState(0)
   const [profilePic, setProfilePic] = useState('')
   const [userName, setUserName] = useState('')
   const [bioText, setBioText] = useState('')
@@ -37,7 +37,7 @@ function Profile({ addItem }) {
   const [isAuthedProfile, setIsAuthedProfile] = useState(false)
   const [updateTrigger, setUpdateTrigger] = useState(false)
 
-  const handleOpenFollowars = () => setOpenFollowers(true);
+  const handleOpenFollowers = () => setOpenFollowers(true);
   const handleCloseFollowers = () => setOpenFollowers(false);
   const handleOpenFollowing = () => setOpenFollowing(true);
   const handleCloseFollowing = () => setOpenFollowing(false);
@@ -45,22 +45,51 @@ function Profile({ addItem }) {
   const handleCloseCreateBoard = () => setOpenCreateBoard(false);
   const [openCreatePin, setOpenCreatePin] = useState(false)
 
-  const search = window.location.search;
-  const params = new URLSearchParams(search);
-  const usernameParam = params.get('username')
-  const [url] = useState(
-    usernameParam
-      ? `${host}/profile/list?username=${usernameParam}`
-      : `${host}/profile/list`
-  )
+  // const search = window.location.search;
+  // const params = new URLSearchParams(search);
+  // const usernameParam = params.get('username')
+  const { usernameParam } = useParams()
+  // console.log(usernameParam)
+  const [url, setUrl] = useState(null)
 
   useEffect(() => {
-    if (authedUser.following)
-      for (const user of authedUser.following) {
-        if (user.followed_user === userName)
-          setFollowed(true)
-      }
-  }, [authedUser.following, userName])
+    // const { usernameParam } = useParams()
+    setUrl(
+      usernameParam
+        ? `${host}/profile/list?username=${usernameParam}`
+        : `${host}/profile/list`
+    )
+  }, [host, usernameParam])
+
+  // useEffect(() => {
+  //   if (authedUser.following)
+  //     for (const user of authedUser.following) {
+  //       if (user.followed_user === userName) {
+  //         setFollowed(true)
+  //         break
+  //       }
+  //     }
+  // }, [authedUser.following, userName])
+
+  useEffect(() => {
+    fetch(`${host}/profile/following/`, { headers })
+      .then(res => res.json())
+      .then(data => {
+        console.log({ data })
+        const followingUsers = data[0]?.following
+        console.log({ followingUsers })
+        try {
+          for (const user of followingUsers) {
+            if (user.username === userName) {
+              setFollowed(true)
+              break
+            }
+          }
+        } catch (error) {
+          console.log({ error })
+        }
+      })
+  }, [headers, host, userName])
 
   useEffect(() => {
     fetch(url, { headers })
@@ -72,7 +101,7 @@ function Profile({ addItem }) {
           const { id, full_name, username, profile_pic, following_count, followers_count, bio, pins, boards } = data[0]
           setFullName(full_name)
           setFollowingNum(following_count)
-          setFollwersNum(followers_count)
+          setFollowersNum(followers_count)
           setProfilePic(profile_pic)
           setUserName(username)
           setBioText(bio)
@@ -94,7 +123,7 @@ function Profile({ addItem }) {
   async function handleFollow(e, id = userId) {
     let statusCode
 
-    await fetch(`${host}/account/${id}/follow`, { headers })
+    await fetch(`${host}/profile/follow/${id}`, { headers })
       .then(res => res.status)
       .then((status) => statusCode = status)
 
@@ -109,7 +138,7 @@ function Profile({ addItem }) {
   async function handleUnfollow(e, id = userId) {
     let statusCode
 
-    await fetch(`${host}/account/${id}/unfollow`, { headers })
+    await fetch(`${host}/profile/unfollow/${id}`, { headers })
       .then(res => res.status)
       .then(status => statusCode = status)
 
@@ -136,7 +165,7 @@ function Profile({ addItem }) {
                   <Typography>@{userName}</Typography>
                   <Typography textAlign="center" sx={{ maxWidth: "640px" }}>{bioText}</Typography>
                   <Typography fontWeight="bold">
-                    <Button disabled={!followersNum} disableRipple variant="text" onClick={handleOpenFollowars} color="black">
+                    <Button disabled={!followersNum} disableRipple variant="text" onClick={handleOpenFollowers} color="black">
                       {followersNum} followers
                     </Button>
                     ·

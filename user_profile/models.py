@@ -43,7 +43,7 @@ class UserFollowing(models.Model):
             models.UniqueConstraint(
                 fields=['user', 'followed_user'], name='unique_followers'),
             models.CheckConstraint(
-                check=~models.Q(user=models.F('followed_user')), name="users can't follow them selves"
+                check=~models.Q(user=models.F('followed_user')), name="users can't follow themselves"
             ), ]
         ordering = ['-start_follow']
         verbose_name_plural = 'Users Following System'
