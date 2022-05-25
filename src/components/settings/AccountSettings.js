@@ -2,7 +2,7 @@ import { MenuItem, Button, InputLabel, Select, Stack, TextField, Typography, For
 import { Fragment, useContext, useEffect, useMemo, useState } from "react";
 import SettingsButtons from "./SettingsButtons";
 import countryList from 'react-select-country-list'
-import axiosFetchInstance from "../../axios/Fetch";
+// import axiosFetchInstance from "../../axios/Fetch";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context'
 
@@ -32,6 +32,8 @@ function AccountSettings() {
     data.append('country', country)
     data.append('gender', gender)
 
+    console.log(country)
+
     fetch(`${host}/profile/update/${authedUser.id}/`, {
       headers: {
         'Authorization': headers.Authorization
@@ -47,7 +49,10 @@ function AccountSettings() {
   }
 
   const HDelete = async () => {
-    await axiosFetchInstance.delete('/account/delete')
+    // await axiosFetchInstance.delete('/profile/delete')
+
+
+    fetch(`${host}/profile/delete`, { headers, method: 'DELETE' })
 
     localStorage.removeItem('pinterestAccessToken')
     localStorage.removeItem('pinterestRefreshToken')

@@ -11,7 +11,7 @@ function PublicProfile() {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [disabled, setDisabled] = useState(true)
-  const [clear, setClear] = useState(false)
+  // const [clear, setClear] = useState(false)
   const [change] = useState(true)
   const [message, setMessage] = useState("")
 
@@ -27,7 +27,7 @@ function PublicProfile() {
       data.append('old_password', oldPassword)
       data.append('new_password', newPassword)
 
-      fetch(`${host}/account/update-password/`, {
+      fetch(`${host}/profile/update-password`, {
         headers: {
           'Authorization': headers.Authorization
         },
@@ -49,16 +49,21 @@ function PublicProfile() {
       setDisabled(true)
   }, [confirmPassword, newPassword, oldPassword])
 
-  useEffect(() => {
-    if (clear) {
-      setConfirmPassword(null)
-      setNewPassword(null)
-      setOldPassword(null)
+  // useEffect(() => {
+  //   if (clear) {
+  //     setConfirmPassword(null)
+  //     setNewPassword(null)
+  //     setOldPassword(null)
 
-      setClear(false)
-    }
-  }, [clear])
+  //     setClear(false)
+  //   }
+  // }, [clear])
 
+  function clearInputs() {
+    setConfirmPassword('')
+    setNewPassword('')
+    setOldPassword('')
+  }
 
   return (
     <Fragment>
@@ -95,7 +100,7 @@ function PublicProfile() {
 
       <SettingsButtons
         disabled={disabled}
-        setClear={setClear}
+        setClear={clearInputs}
         change={change}
         handleSave={handleSave}
       />

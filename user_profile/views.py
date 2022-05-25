@@ -1,23 +1,27 @@
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
+# from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from django.shortcuts import get_object_or_404, redirect
-from django.urls import reverse
-from django.utils.encoding import (DjangoUnicodeDecodeError, smart_bytes,
-                                   smart_str)
-from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
+# from django.utils.http import urlsafe_base64_decode, urlsafe_base64_encode
 # from oauth2_provider.models import AccessToken, RefreshToken
 from rest_framework import request, status
 from rest_framework.decorators import api_view, permission_classes
-from rest_framework.request import Request
+# from rest_framework.request import Request
 from rest_framework.response import Response
-from rest_framework.utils import serializer_helpers
+# from rest_framework.utils import serializer_helpers
 from rest_framework.viewsets import ModelViewSet
 
-# from account.models import Profile, User
-from account.utils import Util
-from pin.models import Pin
+from .models import Profile, User, UserFollowing
+from .serializers import (ProfileSerializer, ProfileUpdateSerializer,
+                          UpdatePasswordSerializer, UserFollowersSerializer,
+                          UserFollowingSerializer)
 
-from .models import Profile
-from .serializers import *
+# from django.urls import reverse
+# from django.utils.encoding import (DjangoUnicodeDecodeError, smart_bytes,
+#    smart_str)
+
+
+# from account.models import Profile, User
+# from account.utils import Util
+# from pin.models import Pin
 
 
 @permission_classes([])
@@ -115,8 +119,39 @@ class FollowingViewSet(ModelViewSet):
 #     queryset = Pin.objects.all()
 
 
-# class ProfileUpdateViewSet(ModelViewSet):
-#     serializer_class = ProfileUpdateSerializer
+class ProfileUpdateViewSet(ModelViewSet):
+    serializer_class = ProfileUpdateSerializer
 
-#     def get_queryset(self):
-#         return Profile.objects.filter(username=self.request.user)
+    def get_queryset(self):
+        return Profile.objects.filter(user__username=self.request.user)
+
+    def get_serializer_context(self):
+        # print({
+        #     'username': self.request.data.get('username'),
+        #     'email': self.request.data.get('email'),
+        # })
+        return {
+            'username': self.request.data.get('username'),
+            'email': self.request.data.get('email'),
+        }
+
+
+@api_view(['DELETE'])
+def delete_user(request):
+    try:
+        User.objects.get(username=request.user).delete()
+        return Response(data={'msg': 'account deleted successfully'}, status=status.HTTP_204_NO_CONTENT)
+    except Exception as e:
+        return Response(data={'msg': f"error while delete {e}"}, status=status.HTTP_400_BAD_REQUEST)
+
+
+@api_view(['PUT'])
+def update_password(request):
+    serializer = UpdatePasswordSerializer(
+        data=request.data, context={'request': request})
+
+    if serializer.is_valid():
+        serializer.save()
+        return Response(data={'msg': 'password changed successfully'}, status=status.HTTP_200_OK)
+
+    return Response(data=serializer.errors, status=status.HTTP_400_BAD_REQUEST)

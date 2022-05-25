@@ -1,3 +1,5 @@
+from django.contrib.auth.password_validation import validate_password
+from django_countries.serializers import CountryFieldMixin
 from rest_framework import serializers
 
 from board.models import Board
@@ -8,11 +10,11 @@ from pin.models import Pin
 from .models import Profile, UserFollowing
 
 
-class ProfileSerializer(serializers.ModelSerializer):
+class ProfileSerializer(CountryFieldMixin, serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['id', 'full_name', 'profile_pic',
-                  'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards']
+        fields = ['id', 'gender', 'country', 'first_name', 'last_name', 'full_name', 'profile_pic', 'email',
+                  'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards', 'website']
 
     full_name = serializers.SerializerMethodField('get_full_name')
     following_count = serializers.SerializerMethodField('get_following_count')
@@ -20,6 +22,10 @@ class ProfileSerializer(serializers.ModelSerializer):
     pins = serializers.SerializerMethodField('get_pins')
     boards = serializers.SerializerMethodField('get_boards')
     username = serializers.SerializerMethodField('get_username')
+    email = serializers.SerializerMethodField('get_email')
+
+    def get_email(self, instance: Profile):
+        return instance.user.email
 
     def get_boards(self, instance: Profile):
         serializer_context = {'request': self.context.get('request')}
@@ -99,8 +105,51 @@ class FollowerData(serializers.ModelSerializer):
 #         fields = '__all__'
 
 
-# class ProfileUpdateSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Profile
-#         fields = ['id', 'profile_pic', 'first_name', 'last_name', 'bio',
-#                   'website', 'username', 'email', 'country', 'gender']
+class ProfileUpdateSerializer(CountryFieldMixin, serializers.ModelSerializer):
+    class Meta:
+        model = Profile
+        fields = ['id', 'profile_pic', 'first_name', 'last_name', 'bio',
+                  'website', 'username', 'email', 'country', 'gender']
+
+    username = serializers.SerializerMethodField('get_username')
+    email = serializers.SerializerMethodField('get_email')
+
+    def get_username(self, instance: Profile):
+        return instance.user.username
+
+    def get_email(self, instance: Profile):
+        return instance.user.email
+
+    def update(self, instance: Profile, validated_data):
+        if (self.context.get('username')):
+            instance.user.username = self.context.get('username')
+
+        if (self.context.get('email')):
+            instance.user.email = self.context.get('email')
+
+        instance.user.save()
+        return super().update(instance, validated_data)
+
+
+class UpdatePasswordSerializer(serializers.Serializer):
+    old_password = serializers.CharField(required=True)
+    new_password = serializers.CharField(required=True)
+
+    def validate_old_password(self, value):
+        user = self.context.get('request').user
+        if not user.check_password(value):
+            raise serializers.ValidationError('check old password again')
+
+    def validate_new_password(self, value):
+        try:
+            validate_password(value, self.context['request'].user)
+        except Exception as e:
+            raise serializers.ValidationError(str(e))
+        return value
+
+    def save(self, **kwargs):
+        password = self.validated_data['new_password']
+        user = self.context['request'].user
+        user.set_password(password)
+        user.save()
+        return user
