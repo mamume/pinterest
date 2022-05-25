@@ -143,10 +143,8 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
                         if (setPinItems) {
                             setPinItems(pinItems => [data, ...pinItems])
                         }
-                        onClose()
+                        onCloseModal()
                         //history(`/pin/${data.id}`)
-
-
                     });
 
 
@@ -190,6 +188,7 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
     }
     const [showLable] = useState(true);
     const [showModalPin] = useState(false);
+
     return (
         <Modal
             style={{ zIndex: 1000001 }}

@@ -77,24 +77,26 @@ function App() {
           <Router>
             <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
             <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
-              {authedUser
-                ?
-                <Routes>
-                  <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
-                  <Route path="/profile/" element={<Profile addItem={addItem} />} />
-                  <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
-                  <Route path="/settings/*" element={<Settings />} />
-                  <Route path="/board/" element={<Board addItem={addItem} />} />
-                  <Route path="/create_pin/" element={<Create />} />
-                  <Route path='/pin/:id' element={<Pin />}> </Route>
-                </Routes>
-                :
-                <Routes>
-                  <Route path="/" exact element={<LogoutHomepage />} />
-                  <Route path="/password-reset" element={<PwReset />} />
-                  <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
-                </Routes>
-              }
+              <Routes>
+                {authedUser
+                  ?
+                  <>
+                    <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
+                    <Route path="/profile/" element={<Profile addItem={addItem} />} />
+                    <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
+                    <Route path="/settings/*" element={<Settings />} />
+                    <Route path="/board/" element={<Board addItem={addItem} />} />
+                    <Route path="/create_pin/" element={<Create />} />
+                    <Route path='/pin/:id' element={<Pin />} />
+                  </>
+                  :
+                  <>
+                    <Route path="/" exact element={<LogoutHomepage />} />
+                    <Route path="/password-reset" element={<PwReset />} />
+                    <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
+                  </>
+                }
+              </Routes>
             </Container>
           </Router>
         </UserContext.Provider>
