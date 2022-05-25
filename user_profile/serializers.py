@@ -99,10 +99,10 @@ class FollowerData(serializers.ModelSerializer):
             return instance.user.username
 
 
-# class PinDeleteSerializer(serializers.ModelSerializer):
-#     class Meta:
-#         model = Pin
-#         fields = '__all__'
+class PinDeleteSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Pin
+        fields = '__all__'
 
 
 class ProfileUpdateSerializer(CountryFieldMixin, serializers.ModelSerializer):

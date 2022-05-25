@@ -9,19 +9,18 @@ from rest_framework.response import Response
 # from rest_framework.utils import serializer_helpers
 from rest_framework.viewsets import ModelViewSet
 
+# from account.models import Profile, User
+# from account.utils import Util
+from pin.models import Pin
+
 from .models import Profile, User, UserFollowing
-from .serializers import (ProfileSerializer, ProfileUpdateSerializer,
-                          UpdatePasswordSerializer, UserFollowersSerializer,
-                          UserFollowingSerializer)
+from .serializers import (PinDeleteSerializer, ProfileSerializer,
+                          ProfileUpdateSerializer, UpdatePasswordSerializer,
+                          UserFollowersSerializer, UserFollowingSerializer)
 
 # from django.urls import reverse
 # from django.utils.encoding import (DjangoUnicodeDecodeError, smart_bytes,
 #    smart_str)
-
-
-# from account.models import Profile, User
-# from account.utils import Util
-# from pin.models import Pin
 
 
 @permission_classes([])
@@ -114,9 +113,9 @@ class FollowingViewSet(ModelViewSet):
         return {"request": self.request}
 
 
-# class PinDeleteViewSet(ModelViewSet):
-#     serializer_class = PinDeleteSerializer
-#     queryset = Pin.objects.all()
+class PinDeleteViewSet(ModelViewSet):
+    serializer_class = PinDeleteSerializer
+    queryset = Pin.objects.all()
 
 
 class ProfileUpdateViewSet(ModelViewSet):
