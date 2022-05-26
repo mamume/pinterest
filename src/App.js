@@ -27,16 +27,17 @@ function App() {
   const [pins, setPins] = useState([])
 
   useEffect(() => {
-    fetch(`${host}/profile/list/`, { headers })
-      .then(res => res.json())
-      .then(data => {
-        // console.log({ 'data[0]': data[0] })
-        if (data[0]?.username)
-          setAuthedUser(data[0])
-        else
-          setAuthedUser(null)
-      })
-  }, [headers, host])
+    authedUser &&
+      fetch(`${host}/profile/list/`, { headers })
+        .then(res => res.json())
+        .then(data => {
+          // console.log({ 'data[0]': data[0] })
+          if (data[0]?.username)
+            setAuthedUser(data[0])
+          else
+            setAuthedUser(null)
+        })
+  }, [headers, host, authedUser])
 
   const removeItem = (id) => {
     setPins(pins => pins.filter(item => item.id !== id))
