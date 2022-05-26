@@ -6,7 +6,7 @@ import Settings from "./pages/Settings"
 import Homepage from "./pages/Homepage";
 import Board from './pages/Board'
 import NavigationBar from './components/navigationbar/NavigationBar'
-import { Container, CssBaseline } from "@mui/material";
+import { CircularProgress, Container, CssBaseline, Stack } from "@mui/material";
 import { Fragment, useEffect, useState, useRef } from "react";
 import Create from './components/pins/create_pin'
 import Pin from './components/pins/pin'
@@ -25,9 +25,12 @@ function App() {
   })
   const [authedUser, setAuthedUser] = useState(null)
   const [pins, setPins] = useState([])
+  const [loading, setLoading] = useState(false)
 
   useEffect(() => {
-    localStorage.getItem('pinterestAccessToken') &&
+    if (localStorage.getItem('pinterestAccessToken')) {
+      setLoading(true)
+
       fetch(`${host}/profile/list/`, { headers })
         .then(res => res.json())
         .then(data => {
@@ -36,7 +39,10 @@ function App() {
             setAuthedUser(data[0])
           else
             setAuthedUser(null)
+
+          setLoading(false)
         })
+    }
   }, [headers, host])
 
   const removeItem = (id) => {
@@ -78,26 +84,29 @@ function App() {
           <Router>
             <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
             <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
-              <Routes>
-                {authedUser
-                  ?
-                  <>
-                    <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
-                    <Route path="/profile/" element={<Profile addItem={addItem} />} />
-                    <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
-                    <Route path="/settings/*" element={<Settings />} />
-                    <Route path="/board/" element={<Board addItem={addItem} />} />
-                    <Route path="/create_pin/" element={<Create />} />
-                    <Route path='/pin/:id' element={<Pin />} />
-                  </>
-                  :
-                  <>
-                    <Route path="/" exact element={<LogoutHomepage />} />
-                    <Route path="/password-reset" element={<PwReset />} />
-                    <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
-                  </>
-                }
-              </Routes>
+              {loading
+                ? <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
+                :
+                <Routes>
+                  {localStorage.getItem('pinterestAccessToken')
+                    ?
+                    <>
+                      <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
+                      <Route path="/profile/" element={<Profile addItem={addItem} />} />
+                      <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
+                      <Route path="/settings/*" element={<Settings />} />
+                      <Route path="/board/" element={<Board addItem={addItem} />} />
+                      <Route path="/create_pin/" element={<Create />} />
+                      <Route path='/pin/:id' element={<Pin />} />
+                    </>
+                    :
+                    <>
+                      <Route path="/" exact element={<LogoutHomepage />} />
+                      <Route path="/password-reset" element={<PwReset />} />
+                      <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
+                    </>}
+                </Routes>
+              }
             </Container>
           </Router>
         </UserContext.Provider>

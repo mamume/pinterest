@@ -17,13 +17,13 @@ function Homepage({ pins, addItem, removeItem }) {
   const [pinModalItem, setPinModalItem] = useState({})
 
   useEffect(() => {
-    if (authedUser.id) {
+    if (authedUser?.id) {
       fetch(`${host}/board/list?owner_id=${authedUser.id}`, { headers })
         .then(res => res.json())
         .then(data => setBoards(data))
 
     }
-  }, [authedUser.id, headers, host])
+  }, [authedUser?.id, headers, host])
 
   function onOpenPinModal(pinItem) {
     setPinModalItem(pinItem)
