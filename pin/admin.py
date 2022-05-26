@@ -1,5 +1,7 @@
 from django.contrib import admin
-from .models import Pin,PinCategory,Note, PinSection,Section, PinNote, Category
+
+from .models import (Category, Note, Pin, PinCategory, PinNote, PinSection,
+                     Section)
 
 # Register your models here.
 admin.site.register(Pin)

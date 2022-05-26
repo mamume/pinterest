@@ -2,8 +2,6 @@ from django.db import models
 
 from user_profile.models import Profile
 
-# Create your models here.
-
 share_type = (
     ('Public', 'Public'),
     ('Private', 'Private'),
@@ -24,7 +22,6 @@ class Category(models.Model):
 
 class Note(models.Model):
     title = models.CharField(max_length=100)
-    # checklist -- array of items
 
     def __str__(self):
         return self.title
@@ -44,8 +41,7 @@ class Pin(models.Model):
     external_website = models.URLField(max_length=200, blank=True)
     creation_date = models.DateTimeField(auto_now=True)
     alt_text = models.CharField(max_length=500, blank=True)
-    content_src = models.ImageField(
-        upload_to='pins/')
+    content_src = models.ImageField(upload_to='pins/')
     share_type = models.CharField(
         max_length=15, choices=share_type, blank=True)
     category = models.ManyToManyField('Category', through='PinCategory')

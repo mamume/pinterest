@@ -1,15 +1,13 @@
 from rest_framework import serializers
 
-# from account.models import UserProfile
-from pin.api.v1.serializers import PinSerializer
 from pin.models import Pin
+from pin.serializers import PinSerializer
 
 from .models import Board, Collaborator, Note, Section
 
 
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
-        # model = UserProfile
         fields = ['id', 'username', 'profile_pic']
 
 

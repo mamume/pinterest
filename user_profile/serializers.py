@@ -4,8 +4,8 @@ from rest_framework import serializers
 
 from board.models import Board
 from board.serializers import BoardSerializer
-from pin.api.v1.serializers import PinSerializer
 from pin.models import Pin
+from pin.serializers import PinSerializer
 
 from .models import Profile, UserFollowing
 
