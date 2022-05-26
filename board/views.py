@@ -1,7 +1,9 @@
 from rest_framework.viewsets import ModelViewSet
 
-from .serializers import BoardSerializer, BoardUpdateSerializer, CollaboratorSerializer, NoteSerializer, SectionSerializer
 from .models import Board, Collaborator, Note, Section
+from .serializers import (BoardSerializer, BoardUpdateSerializer,
+                          CollaboratorSerializer, NoteSerializer,
+                          SectionSerializer)
 
 
 class BoardViewSet(ModelViewSet):
