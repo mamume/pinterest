@@ -37,7 +37,7 @@ function App() {
           else
             setAuthedUser(null)
         })
-  }, [headers, host, authedUser])
+  }, [headers, host])
 
   const removeItem = (id) => {
     setPins(pins => pins.filter(item => item.id !== id))
@@ -49,13 +49,13 @@ function App() {
   }
 
   useEffect(() => {
-    if (authedUser)
+    localStorage.getItem('pinterestAccessToken') &&
       fetch(`${host}/pin/pins/`, { headers })
         .then(res => res.json())
         .then(data => {
           setPins(data)
         })
-  }, [authedUser, host, headers])
+  }, [headers, host])
 
   const AuthRef = useRef();
   const runAuth = (type) => {
