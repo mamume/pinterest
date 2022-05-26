@@ -53,6 +53,10 @@ function Profile({ addItem }) {
   const [url, setUrl] = useState(null)
 
   useEffect(() => {
+    return () => setFollowed(false)
+  }, [])
+
+  useEffect(() => {
     // const { usernameParam } = useParams()
     setUrl(
       usernameParam

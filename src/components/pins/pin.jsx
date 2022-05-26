@@ -132,7 +132,7 @@ function Pin({ open, onClose, removeItem, pinItem }) {
 
 						{/* <div > */}
 						<Stack direction="row" justifyContent="flex-end">
-							{(authedUser.id === pin.owner) && <Button onClick={handleDelete} variant="outline" color="primary" sx={{ color: "white !important", backgroundColor: " #e33225 !important" }}>Delete</Button>}
+							{(authedUser?.id === pin.owner) && <Button onClick={handleDelete} variant="outline" color="primary" sx={{ color: "white !important", backgroundColor: " #e33225 !important" }}>Delete</Button>}
 						</Stack>
 						{/* </div> */}
 

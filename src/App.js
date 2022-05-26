@@ -39,9 +39,8 @@ function App() {
             setAuthedUser(data[0])
           else
             setAuthedUser(null)
-
-          setLoading(false)
         })
+        .then(setLoading(false))
     }
   }, [headers, host])
 
@@ -80,32 +79,36 @@ function App() {
       <Auth ref={AuthRef} />
       <CssBaseline />
       <ThemeProvider theme={theme}>
-        <UserContext.Provider value={{ authedUser, headers, setAuthedUser, setHeaders, host }}>
+        <UserContext.Provider value={{ loading, authedUser, headers, setAuthedUser, setHeaders, host }}>
           <Router>
-            <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
             <Container maxWidth="xl" sx={{ paddingTop: 9 }} >
               {loading
                 ? <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
                 :
-                <Routes>
-                  {localStorage.getItem('pinterestAccessToken')
-                    ?
-                    <>
-                      <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
-                      <Route path="/profile/" element={<Profile addItem={addItem} />} />
-                      <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
-                      <Route path="/settings/*" element={<Settings />} />
-                      <Route path="/board/" element={<Board addItem={addItem} />} />
-                      <Route path="/create_pin/" element={<Create />} />
-                      <Route path='/pin/:id' element={<Pin />} />
-                    </>
-                    :
-                    <>
-                      <Route path="/" exact element={<LogoutHomepage />} />
-                      <Route path="/password-reset" element={<PwReset />} />
-                      <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
-                    </>}
-                </Routes>
+                <>
+                  <NavigationBar runAuth={runAuth} pins={pins} setPins={setPins} />
+                  <Routes>
+                    {localStorage.getItem('pinterestAccessToken')
+                      ? loading
+                        ? <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
+                        :
+                        <>
+                          <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
+                          <Route path="/profile/" element={<Profile addItem={addItem} />} />
+                          <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
+                          <Route path="/settings/*" element={<Settings />} />
+                          <Route path="/board/" element={<Board addItem={addItem} />} />
+                          <Route path="/create_pin/" element={<Create />} />
+                          <Route path='/pin/:id' element={<Pin />} />
+                        </>
+                      :
+                      <>
+                        <Route path="/" exact element={<LogoutHomepage />} />
+                        <Route path="/password-reset" element={<PwReset />} />
+                        <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
+                      </>}
+                  </Routes>
+                </>
               }
             </Container>
           </Router>

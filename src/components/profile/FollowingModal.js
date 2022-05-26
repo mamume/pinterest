@@ -27,7 +27,7 @@ function FollowingModal({ username, open, onClose, handleFollow, handleUnfollow,
 
   useEffect(() => {
     fetch(
-      `${host}/profile/following?username=${authedUser.username}`,
+      `${host}/profile/following/`,
       { headers }
     )
       .then(res => res.json())
@@ -35,7 +35,7 @@ function FollowingModal({ username, open, onClose, handleFollow, handleUnfollow,
         console.log(data)
         setAuthedFollowingIds(data.map(user => (user.following[0].id)))
       })
-  }, [authedUser.username, headers, host, authedUser.following, updateTrigger])
+  }, [authedUser?.username, headers, host, authedUser?.following, updateTrigger])
 
   async function handleToFollow(e, id) {
     const status = await handleFollow(e, id)
