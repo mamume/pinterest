@@ -31,6 +31,17 @@ function Board({ addItem }) {
   const { headers, host, authedUser } = useContext(UserContext)
 
   useEffect(() => {
+    return () => {
+      setTitle('')
+      setShare(false)
+      setDescription('')
+      setPinItems([])
+      setCoverImage('')
+      setOwnerId(null)
+    }
+  }, [])
+
+  useEffect(() => {
     if (boardId) {
       fetch(`${host}/board/list/${boardId}`, { headers })
         .then(res => res.json())
@@ -49,15 +60,15 @@ function Board({ addItem }) {
     }
     else
       setNotFound(true)
-  }, [boardId, headers, host, authedUser.id])
+  }, [boardId, headers, host, authedUser?.id])
 
   useEffect(() => {
     title && authedUser.id && setLoaded(true)
-  }, [title, authedUser.id])
+  }, [title, authedUser?.id])
 
   useEffect(() => {
-    ownerId === authedUser.id && setIsAuthedBoard(true)
-  }, [authedUser.id, ownerId])
+    ownerId === authedUser?.id && setIsAuthedBoard(true)
+  }, [authedUser?.id, ownerId])
 
   useEffect(() => {
     !isAuthedBoard && !share

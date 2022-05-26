@@ -117,8 +117,8 @@ function Profile({ addItem }) {
   }, [userName, userId])
 
   useEffect(() => {
-    userName === authedUser.username && setIsAuthedProfile(true)
-  }, [authedUser.username, userName])
+    userName === authedUser?.username && setIsAuthedProfile(true)
+  }, [authedUser?.username, userName])
 
   async function handleFollow(e, id = userId) {
     let statusCode
