@@ -12,6 +12,12 @@ function FollowersModal({ open, onClose, followersNum, username, handleFollow, h
   const [authedFollowingIds, setAuthedFollowingIds] = useState([])
 
   useEffect(() => {
+    return () => {
+      setFollowers([])
+    }
+  }, [])
+
+  useEffect(() => {
     fetch(`${host}/profile/followers?username=${username}`, { headers })
       .then(res => res.json())
       .then(data => {
@@ -66,10 +72,10 @@ function FollowersModal({ open, onClose, followersNum, username, handleFollow, h
             <Fragment key={follower.id}>
               <Stack direction="row" justifyContent="space-between">
                 <Stack direction="row" alignItems="center" spacing={1}>
-                  <a className={classes.link} href={`/profile?username=${follower.username}`}>
+                  <a className={classes.link} href={`/profile/${follower.username}`}>
                     <Avatar sx={{ width: 56, height: 56 }} src={follower.profilePic} />
                   </a>
-                  <a className={classes.link} href={`/profile?username=${follower.username}`}>
+                  <a className={classes.link} href={`/profile/${follower.username}`}>
                     <Typography fontWeight="bold">{follower.fullName}</Typography>
                   </a>
                 </Stack>

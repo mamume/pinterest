@@ -20,8 +20,8 @@ import LogoutHomepage from './LogoutHomepage/App'
 function App() {
   const [host] = useState('http://localhost:8000')
   const [headers, setHeaders] = useState({
-    'content-type': "application/json",
-    'Authorization': `JWT ${localStorage.getItem('pinterestAccessToken')}`
+    "content-type": "application/json",
+    "Authorization": `JWT ${localStorage.getItem('pinterestAccessToken')}`
   })
   const [authedUser, setAuthedUser] = useState(null)
   const [pins, setPins] = useState([])

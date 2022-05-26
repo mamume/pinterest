@@ -66,7 +66,7 @@ def follow(request, u_id):
 @api_view(['GET'])
 def unfollow(request, u_id):
     # f_user = Profile.objects.filter(id=u_id)
-    current_profile = Profile.objects.get(user=request.user)
+    current_profile = Profile.objects.get(user__username=request.user)
 
     try:
         f_user = get_object_or_404(Profile, id=u_id)
@@ -101,7 +101,7 @@ class FollowingViewSet(ModelViewSet):
 
     def get_queryset(self):
         username = self.request.query_params.get('username')
-        current_profile = Profile.objects.get(user=self.request.user)
+        current_profile = Profile.objects.get(user__username=self.request.user)
 
         if username:
             following = get_object_or_404(Profile, user__username=username)

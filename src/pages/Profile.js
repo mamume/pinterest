@@ -127,7 +127,7 @@ function Profile({ addItem }) {
       .then(res => res.status)
       .then((status) => statusCode = status)
 
-    if (statusCode === 201) {
+    if (statusCode === 201 && id === userId) {
       setFollowed(true)
       setUpdateTrigger(prev => !prev)
     }
@@ -142,7 +142,7 @@ function Profile({ addItem }) {
       .then(res => res.status)
       .then(status => statusCode = status)
 
-    if (statusCode === 200) {
+    if (statusCode === 200 && id === userId) {
       setFollowed(false)
       setUpdateTrigger(prev => !prev)
     }

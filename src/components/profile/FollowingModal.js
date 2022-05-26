@@ -31,9 +31,10 @@ function FollowingModal({ username, open, onClose, handleFollow, handleUnfollow,
       { headers }
     )
       .then(res => res.json())
-      .then(data => (
+      .then(data => {
+        console.log(data)
         setAuthedFollowingIds(data.map(user => (user.following[0].id)))
-      ))
+      })
   }, [authedUser.username, headers, host, authedUser.following, updateTrigger])
 
   async function handleToFollow(e, id) {
@@ -65,10 +66,10 @@ function FollowingModal({ username, open, onClose, handleFollow, handleUnfollow,
           {following.map((following, index) => (
             <Stack key={index} direction="row" justifyContent="space-between">
               <Stack direction="row" alignItems="center" spacing={1}>
-                <a className={classes.link} href={`/profile?username=${following.username}`}>
+                <a className={classes.link} href={`/profile/${following.username}`}>
                   <Avatar sx={{ width: 56, height: 56 }} src={following.profilePic} />
                 </a>
-                <a className={classes.link} href={`/profile?username=${following.username}`}>
+                <a className={classes.link} href={`/profile/${following.username}`}>
                   <Typography fontWeight="bold">{following.fullName}</Typography>
                 </a>
               </Stack>
