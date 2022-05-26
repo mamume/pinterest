@@ -139,6 +139,12 @@ export default function PrimarySearchAppBar(props) {
         </MenuItem>
       </Link>
 
+      <Link to="/settings/" className={classes.link}>
+        <MenuItem onClick={handleMenuClose}>
+          Settings
+        </MenuItem>
+      </Link>
+
       <MenuItem onClick={handleLogout}>
         Logout
       </MenuItem>

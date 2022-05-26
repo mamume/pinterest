@@ -27,7 +27,7 @@ function App() {
   const [pins, setPins] = useState([])
 
   useEffect(() => {
-    authedUser &&
+    localStorage.getItem('pinterestAccessToken') &&
       fetch(`${host}/profile/list/`, { headers })
         .then(res => res.json())
         .then(data => {
