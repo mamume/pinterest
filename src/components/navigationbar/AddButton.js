@@ -11,7 +11,6 @@ function AddButton({ addItem }) {
   const onOpen = () => setOpen(true)
   return (
     <Fragment>
-      {/* <Link to="/create_pin"> */}
       <IconButton onClick={onOpen} color="primary" aria-label="add to shopping cart" style={{
         position: "fixed",
         bottom: 90,
@@ -34,9 +33,6 @@ function AddButton({ addItem }) {
         onClose={onClose}
         open={open}
       />
-
-      {/* </Link> */}
-
     </Fragment>
   )
 }

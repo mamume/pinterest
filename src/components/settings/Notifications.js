@@ -9,7 +9,7 @@ function Notifications() {
 
             <Typography variant="h6">On Pinterest</Typography>
             <Stack direction="row" justifyContent="space-between" alignItems="start" spacing={2}>
-                <Typography variant="subtitle1" paragraph>Pick which notifictions to see while in the app or on the site.</Typography>
+                <Typography variant="subtitle1" paragraph>Pick which notifications to see while in the app or on the site.</Typography>
                 <Button color="grey" variant="contained" component="span">
                     Edit
                 </Button>

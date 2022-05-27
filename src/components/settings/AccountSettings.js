@@ -2,7 +2,6 @@ import { MenuItem, Button, InputLabel, Select, Stack, TextField, Typography, For
 import { Fragment, useContext, useEffect, useMemo, useState } from "react";
 import SettingsButtons from "./SettingsButtons";
 import countryList from 'react-select-country-list'
-// import axiosFetchInstance from "../../axios/Fetch";
 import { useNavigate } from 'react-router-dom';
 import { UserContext } from '../../context'
 
@@ -49,9 +48,6 @@ function AccountSettings() {
   }
 
   const HDelete = async () => {
-    // await axiosFetchInstance.delete('/profile/delete')
-
-
     fetch(`${host}/profile/delete`, { headers, method: 'DELETE' })
 
     localStorage.removeItem('pinterestAccessToken')
@@ -113,8 +109,6 @@ function AccountSettings() {
         </RadioGroup>
       </FormControl>
 
-      {/* TODO: Login Options */}
-
       <Typography variant="h6">Account Changes</Typography>
       <Typography sx={{ fontWeight: 'bold' }}>Delete Account</Typography>
       <Stack direction="row" justifyContent="space-between" alignItems="center" spacing={2}>
@@ -130,7 +124,6 @@ function AccountSettings() {
         change={change}
         handleSave={HSave}
       />
-
     </Fragment >
   );
 }

@@ -2,8 +2,7 @@ import React from 'react';
 import "./pin_thumbnail_styles.css"
 
 class PinThumbnail extends React.Component {
-    
-    render() { 
+    render() {
         return (
             <React.Fragment>
                 <div className="pin_container">
@@ -35,16 +34,14 @@ class PinThumbnail extends React.Component {
                                 <i class="fas fa-ellipsis-h"></i>
                             </div>
                         </div>
-                   </div>
-                    <div className="pin_image_container">
-                        <img src="/images/movie2.jpg" alt="pin_img" className="pin_image"/>
                     </div>
-
+                    <div className="pin_image_container">
+                        <img src="/images/movie2.jpg" alt="pin_img" className="pin_image" />
+                    </div>
                 </div>
-            
             </React.Fragment>
         );
     }
 }
- 
+
 export default PinThumbnail;

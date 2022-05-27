@@ -110,65 +110,15 @@ function Board({ addItem }) {
                         boardShare={share}
                         boardId={boardId}
                       /></>}
-                    {/* <MenuButton
-                      icon={<MoreHorizIcon />}
-                      options={["Edit Board", "Share", "Merge", "Archive"]}
-                      label="Board Options"
-                    /> */}
                   </Stack>
 
-                  {/* <Button onClick={handleOpen} color="text" disableElevation sx={{ margin: 0, padding: 0, borderRadius: "16px" }}>
-          <Stack direction='row' alignItems="center">
-            <AvatarGroup max={2}>
-              <Avatar alt="Remy Sharp" src="#" />
-              <Avatar alt="Travis Howard" src="#" />
-              <Avatar alt="Cindy Baker" src="#" />
-              <Avatar alt="Agnes Walker" src="#" />
-              <Avatar alt="Trevor Henderson" src="#" />
-            </AvatarGroup>
-            <AddRoundedIcon fontSize="large" color="black" />
-          </Stack>
-        </Button> */}
-
-                  {/* <Modal
-                  open={open}
-                  onClose={handleClose}
-                >
-                  <InviteModal
-                    handleClose={handleClose}
-                  />
-                </Modal> */}
-
                   <Typography>{share ? "Public" : "Private"} Board</Typography>
-                  {/* <Stack direction="row" spacing mt mb>
-          <Stack alignItems="center">
-            <IconButton sx={boardBtn}>
-              <FlareRoundedIcon fontSize="large" color="black" />
-            </IconButton>
-            <Typography variant="caption">More Ideas</Typography>
-          </Stack>
-
-          <Stack alignItems="center">
-            <IconButton sx={boardBtn}>
-              <AppRegistrationRoundedIcon fontSize="large" color="black" />
-            </IconButton>
-            <Typography variant="caption">Organize</Typography>
-          </Stack>
-
-          <Stack alignItems="center">
-            <IconButton sx={boardBtn}>
-              <NotesRoundedIcon fontSize="large" color="black" />
-            </IconButton>
-            <Typography variant="caption">Notes</Typography>
-          </Stack>
-        </Stack> */}
                 </Stack>
 
                 <Divider sx={{ marginY: 5 }} />
 
                 <Stack direction="row" justifyContent="space-between">
                   <Typography fontWeight="bold">{pinItems.length} Pins</Typography>
-                  {/* <Link className={classes.link} to={`/create_pin?board_id=${boardId}`}> */}
                   {isAuthedBoard && (
                     <Fragment>
                       <Button
@@ -195,26 +145,18 @@ function Board({ addItem }) {
                       </Button>
                     </Fragment>
                   )}
-                  {/* </Link> */}
-
-                  {/* <MenuButton
-          icon={<MenuRoundedIcon fontSize="large" />}
-          label="Sort boards by"
-          options={["A to Z", "Drag and drop", "Last saved to"]}
-        /> */}
                 </Stack>
 
                 {Boolean(pinItems.length)
                   ? <BoardPins isAuthedBoard={isAuthedBoard} boardId={boardId} pins={pinItems} />
-
                   : <Typography textAlign="center">There aren’t any Pins on this board yet</Typography>
                 }
-              </Fragment >
+              </Fragment>
             )
             : <NotFound message="Private Board" />
           : <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
       }
-    </Fragment >
+    </Fragment>
   );
 }
 

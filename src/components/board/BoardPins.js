@@ -51,8 +51,7 @@ function BoardPin({ pins, boardId, isAuthedBoard }) {
   }
 
   const saveImage = (image, title) => {
-    // console.log(image)
-    saveAs(image, `${title}.jpg`) // Put your image url here.
+    saveAs(image, `${title}.jpg`)
   }
 
   return (

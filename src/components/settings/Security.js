@@ -11,7 +11,6 @@ function PublicProfile() {
   const [newPassword, setNewPassword] = useState('')
   const [confirmPassword, setConfirmPassword] = useState('')
   const [disabled, setDisabled] = useState(true)
-  // const [clear, setClear] = useState(false)
   const [change] = useState(true)
   const [message, setMessage] = useState("")
 
@@ -49,16 +48,6 @@ function PublicProfile() {
       setDisabled(true)
   }, [confirmPassword, newPassword, oldPassword])
 
-  // useEffect(() => {
-  //   if (clear) {
-  //     setConfirmPassword(null)
-  //     setNewPassword(null)
-  //     setOldPassword(null)
-
-  //     setClear(false)
-  //   }
-  // }, [clear])
-
   function clearInputs() {
     setConfirmPassword('')
     setNewPassword('')
@@ -81,6 +70,7 @@ function PublicProfile() {
         value={oldPassword}
         onChange={e => setOldPassword(e.target.value)}
       />
+
       <TextField
         type="password"
         placeholder="Enter your new password"
@@ -89,6 +79,7 @@ function PublicProfile() {
         value={newPassword}
         onChange={e => setNewPassword(e.target.value)}
       />
+
       <TextField
         type="password"
         placeholder="Confirm your new password"
@@ -104,7 +95,7 @@ function PublicProfile() {
         change={change}
         handleSave={handleSave}
       />
-    </Fragment >
+    </Fragment>
   );
 }
 

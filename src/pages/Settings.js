@@ -69,35 +69,6 @@ function Setting() {
               </ListItemButton>
             </Link>
 
-            {/* <ListItemButton>
-              <ListItemText
-                primaryTypographyProps={{
-                  variant: "button"
-                }}
-              >
-                Home feed tuner</ListItemText>
-            </ListItemButton>
-            <ListItemButton>
-              <ListItemText
-                primaryTypographyProps={{
-                  variant: "button"
-                }}
-              >
-                Claim</ListItemText>
-            </ListItemButton>
-
-            <Link to="notifications" className={classes.link}>
-              <ListItemButton selected={location.pathname === "/settings/notifications"}>
-                <ListItemText
-                  primaryTypographyProps={{
-                    variant: "button"
-                  }}
-                >
-                  Notifications
-                </ListItemText>
-              </ListItemButton>
-            </Link> */}
-
             <Link to="security" className={classes.link}>
               <ListItemButton selected={location.pathname === "/settings/security/"}>
                 <ListItemText
@@ -108,33 +79,6 @@ function Setting() {
                   Security</ListItemText>
               </ListItemButton>
             </Link>
-            {/* <Link to="privacy" className={classes.link}>
-              <ListItemButton selected={location.pathname === "/settings/privacy"}>
-                <ListItemText
-                  primaryTypographyProps={{
-                    variant: "button"
-                  }}
-                >
-                  Privacy and data</ListItemText>
-              </ListItemButton>
-            </Link> */}
-
-            {/* <ListItemButton>
-              <ListItemText
-                primaryTypographyProps={{
-                  variant: "button"
-                }}
-              >
-                Security</ListItemText>
-            </ListItemButton> */}
-            {/* <ListItemButton>
-              <ListItemText
-                primaryTypographyProps={{
-                  variant: "button"
-                }}
-              >
-                Apps</ListItemText>
-            </ListItemButton> */}
           </List>
         </Drawer>
         <Stack m={3} spacing={2} sx={{ width: "490px" }}>
@@ -143,8 +87,6 @@ function Setting() {
             />
             <Route path="account" element={<AccountSettings />} />
             <Route path="security" element={<Security />} />
-            {/* <Route path="notifications" element={<Notifications />} /> */}
-            {/* <Route path="privacy" element={<PrivacyAndData />} /> */}
           </Routes>
         </Stack>
       </div>

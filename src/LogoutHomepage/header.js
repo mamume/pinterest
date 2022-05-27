@@ -4,7 +4,7 @@ import PinterestIcon from '@mui/icons-material/Pinterest';
 import styled from 'styled-components';
 
 function Header() {
-    return ( 
+    return (
         <Wrapper>
             <LogoWrapper>
                 <PinterestIcon />
@@ -26,13 +26,9 @@ function Header() {
                 <SignupButton>
                     <a href="/">Sign up</a>
                 </SignupButton>
-
             </Container>
-           
-            
-
         </Wrapper>
-     );
+    );
 }
 
 export default Header;

@@ -18,8 +18,6 @@ import avatar from '../avatar/1.jpg';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 
 
-
-
 export default function PrimarySearchAppBar() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);

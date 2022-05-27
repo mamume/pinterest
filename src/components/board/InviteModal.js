@@ -48,7 +48,6 @@ function InviteModal({ handleClose }) {
         </Stack>
 
         <TextField label="Search" placeholder="Search by name or email" fullWidth margin="dense" />
-        {/* List of users */}
         <Stack mb mt direction="row" justifyContent="space-between">
           <div>
             <Stack direction="row" justifyContent="space-between" spacing>

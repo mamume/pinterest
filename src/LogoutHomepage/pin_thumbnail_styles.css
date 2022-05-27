@@ -16,6 +16,7 @@
     box-sizing: border-box;
     position: absolute;
 }
+
 .pin_elements:hover{
     opacity: 1;
 }
@@ -32,6 +33,7 @@
     flex-direction: row;
     justify-content: space-around;
 }
+
 .destination{
     display: flex;
     align-items: center;
@@ -45,12 +47,12 @@
     overflow: hidden;
     white-space: nowrap;
 }
+
 .destination:hover{
     background-color: #fffafa;
     border:2px solid skyblue;
-
-
 }
+
 #arrow{
  transform: rotate(45deg);
  font-size: 20px;
@@ -68,6 +70,7 @@
     cursor: pointer;
     flex-shrink: 0;
 }
+
 .icon_container:hover{
     background-color: #fffafa;
     border: 2px solid skyblue;
@@ -87,14 +90,13 @@
     background-color: #E60023;
     cursor: pointer;
 }
+
 .head_section{
     display: flex;
     justify-content: space-between;
     flex-direction: row-reverse;
     align-items: center;
 }
- 
-
 
 .dist_cont{
     max-height: 32px;
@@ -106,15 +108,13 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    
-    
 }
 
 .pin_image{
     max-height: 100%;
     max-width: 100%;
     border-radius: 12px;
-    object-fit: cover;   
+    object-fit: cover;
 }
 
 
@@ -125,6 +125,4 @@
     font-size: 18px;
     font-weight: 700;
     border: none;
-
 }
-

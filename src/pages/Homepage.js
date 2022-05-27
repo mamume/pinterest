@@ -51,7 +51,7 @@ function Homepage({ pins, addItem, removeItem }) {
           <Pin pinItem={pinModalItem} open={open} onClose={onClosePinModal} removeItem={removeItem} />
         </Fragment>
       }
-    </Fragment >
+    </Fragment>
   );
 }
 

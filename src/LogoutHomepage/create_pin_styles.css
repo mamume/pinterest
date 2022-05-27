@@ -2,26 +2,26 @@
 html, body, #app, #app>div {
     height: 100%;
 }
+
 html, body {
     overflow: auto;
 }
+
 html{
     min-height: 100vh;
     height: 100%;
     overflow: auto;
 }
+
 body{
     min-height: 100vh;
     height: 100%;
     overflow: auto;
-
 }
+
 .App{
     height: 100%;
 }
-
-
-
 
 .add_pin_modal{
     width:100%;
@@ -32,13 +32,9 @@ body{
     left: 50%;
     z-index: 10000;
     transform: translate(-50%, -50%);
-    
-    
-    
 }
 
 .add_pin_container{
-    
     max-width: 882px;
     height: 600px;
     background-color: white;
@@ -51,14 +47,12 @@ body{
     padding: 35px;
     display: flex;
     border:2px solid #EFEFEF;
-
 }
 
 .side{
     width: 50%;
     height: 100%;
     padding: 20px;
-
 }
 
 .pin_mock_icon_container{
@@ -72,6 +66,7 @@ body{
     background-color: white;
     cursor: pointer;
 }
+
 .pin_mock_icon{
     width: 50%;
 }
@@ -80,25 +75,15 @@ body{
     width: 100%;
     height: 8%;
 }
+
 .section2{
-    
     width: 100%;
     height: 80%;
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
     align-items: center;
-    
-    
 }
-/*.section3{
-    width: 100%;
-    height: 12%;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    margin-top: 20px;
-}*/
 
 #left_side .section1 .pin_mock_icon_container{
     width: 40px;
@@ -110,7 +95,6 @@ body{
 #left_side .section1 .pin_mock_icon_container:hover{
     background-color:rgba(239, 239, 239, 1);
 }
-
 
 #upload_img_label{
     width: 100%;
@@ -131,6 +115,7 @@ body{
     padding: 10px;
     background-color: #EFEFEF;
 }
+
 .dotted_border{
     width: 100%;
     height: 100%;
@@ -149,18 +134,18 @@ body{
     background-color: #767676;
 }
 
-
-
 #right_side .section1{
     display: flex;
     justify-content: flex-end;
 }
+
 #right_side .section1 .select_size{
     width: 236px;
     height: 40px;
     display: flex;
 
 }
+
 #right_side .section1 .select_size select{
     width: 70%;
     height: 100%;
@@ -186,19 +171,7 @@ body{
     align-items: center;
     font-weight: 700;
     cursor: pointer;
-
 }
-
-/*#right_side .section2 .new_pin_input{
-    width: 100%;
-    height: 50px;
-    margin-left: 20px;
-    border: none;
-    border-bottom:2px solid #c6c6c6;
-    background-color: transparent;
-    font-size: 16px;
-    outline: none;
-}*/
 
 .pin_title{
     font-size: 3vw;
@@ -209,7 +182,6 @@ body{
     border-bottom:2px solid #c6c6c6;
     outline: none;
 }
-
 
 .pin_description{
     font-size: 1.5vw;
@@ -231,9 +203,8 @@ body{
     margin-top: 15vw;
     outline: none;
     color:#7e7b7b;
-    
-
 }
+
 .alt_text{
     font-size: 1.5vw;
     width: 100%;
@@ -244,13 +215,13 @@ body{
     color:#7e7b7b;
     display: none;
 }
+
 .alt_text_display{
     display: block;
 }
+
 .pin_title_on_focus{
     border-bottom:2px solid rgb(72, 72, 247);
-    
-
 }
 
 #recommend{
@@ -273,8 +244,8 @@ body{
 
 #alt-text-btn:hover{
     background-color: #d8d7d7;
-
 }
+
 .alt_text_btn_disappears{
     display: none;
 }
@@ -305,6 +276,7 @@ body{
 .pin_max_width{
     max-width: 100%;
 }
+
 .pin_max_height{
     max-height: 100%;
 }
@@ -317,8 +289,6 @@ body{
     background-color: white;
     padding: 10px;
     border-radius: 12px;
-    /*justify-content: center;
-    align-items: center;*/
     position: absolute;
     top: 77px;
     left: 21px;
@@ -326,9 +296,11 @@ body{
     overflow: hidden;
     display:none ;
 }
+
 .more_options_btn:hover{
     border-color: 2px solid skyblue;
 }
+
 .more_options_btn_display{
     display: inline-flex;
 }
@@ -343,10 +315,12 @@ body{
     font-weight: 700;
     padding: 10px;
 }
+
 .m_delete:hover{
     background-color: #EFEFEF;
 
 }
+
 .m_duplicate{
     width: 100%;
     height: 50%;
@@ -357,6 +331,7 @@ body{
     font-weight: 700;
     padding: 10px;
 }
+
 .m_duplicate:hover{
     background-color: #EFEFEF;
 
@@ -389,12 +364,13 @@ body{
     padding: 1.5rem;
     box-sizing: border-box;
     outline: none;
-    /*border: 1px solid #b6b6b6;*/
     color: #b6b6b6;
 }
+
 .board_search_bar_outline{
     border: 3px solid skyblue;
 }
+
 .fa-search{
     position: absolute;
     top: 27px;
@@ -418,10 +394,12 @@ body{
     border-top: 1px solid #b6b6b6;
     border-radius: 30px 0px 0px 30px;
 }
+
 .create_board_tab:hover{
     background-color: #c4bfbf;
     cursor: pointer;
 }
+
 .plus{
     font-size: 1.8rem;
     color: #e60023;
@@ -431,9 +409,3 @@ body{
     font-size: 1.3rem;
     text-align: center;
 }
-
-
-
-
-
-

@@ -45,11 +45,7 @@ function Profile({ addItem }) {
   const handleCloseCreateBoard = () => setOpenCreateBoard(false);
   const [openCreatePin, setOpenCreatePin] = useState(false)
 
-  // const search = window.location.search;
-  // const params = new URLSearchParams(search);
-  // const usernameParam = params.get('username')
   const { usernameParam } = useParams()
-  // console.log(usernameParam)
   const [url, setUrl] = useState(null)
 
   useEffect(() => {
@@ -57,7 +53,6 @@ function Profile({ addItem }) {
   }, [])
 
   useEffect(() => {
-    // const { usernameParam } = useParams()
     setUrl(
       usernameParam
         ? `${host}/profile/list?username=${usernameParam}`
@@ -65,23 +60,11 @@ function Profile({ addItem }) {
     )
   }, [host, usernameParam])
 
-  // useEffect(() => {
-  //   if (authedUser.following)
-  //     for (const user of authedUser.following) {
-  //       if (user.followed_user === userName) {
-  //         setFollowed(true)
-  //         break
-  //       }
-  //     }
-  // }, [authedUser.following, userName])
-
   useEffect(() => {
     fetch(`${host}/profile/following/`, { headers })
       .then(res => res.json())
       .then(data => {
-        // console.log({ data })
         const followingUsers = data[0]?.following
-        // console.log({ followingUsers })
         try {
           for (const user of followingUsers) {
             if (user.username === userName) {
@@ -153,7 +136,6 @@ function Profile({ addItem }) {
     return statusCode
   }
 
-
   return (
     <Fragment>
       {
@@ -212,20 +194,6 @@ function Profile({ addItem }) {
                   </Stack>
                 </Stack>
 
-                {/* <Stack direction="row" justifyContent="space-between" mt={7}>
-              <MenuButton
-                icon={<MenuRoundedIcon fontSize="large" />}
-                label="Sort boards by"
-                options={["A to Z", "Drag and drop", "Last saved to"]}
-              />
-
-              <MenuButton
-                icon={<AddRounded fontSize="large" />}
-                label="Create"
-                options={["Pin", "Board"]}
-              />
-            </Stack> */}
-
                 <Divider sx={{ marginY: 5 }} />
                 <Stack direction='row' justifyContent="space-between" mt={3}>
                   <Typography fontWeight="bold" variant="h6">Boards</Typography>
@@ -243,19 +211,12 @@ function Profile({ addItem }) {
                       <BoardThumbnail isAuthedProfile={isAuthedProfile} board={item} key={index} />
                     ))}
                   </Masonry>
-                  // ? <Masonry className={classes.masonry}>
-                  //   {boardItems.map((item, index) => (
-                  //     <SinglePin url={`/board?board_id=${item.id}`} key={index} img={item.cover_img || '/images/board_placeholder.png'} id={item.id} />
-                  //   ))}
-                  // </Masonry>
-
                   : <Typography textAlign="center">There are no Boards</Typography>
                 }
 
                 <Divider sx={{ marginY: 5 }} />
                 <Stack direction='row' justifyContent="space-between" mt={3}>
                   <Typography fontWeight="bold" variant="h6">Pins</Typography>
-                  {/* <Button color="grey">Organize</Button> */}
                   {isAuthedProfile && <>
                     <Button
                       color="grey"

@@ -7,14 +7,13 @@ import NotificationsIcon from '@mui/icons-material/Notifications';
 import TextsmsIcon from '@mui/icons-material/Textsms';
 import KeyboardArrowDownIcon from '@mui/icons-material/KeyboardArrowDown';
 
-// <></>
 
 function AltNavigationBar() {
     return (
         <Wrapper>
             <LogoWrapper>
                 <IconButton>
-                    <PinterestIcon/>
+                    <PinterestIcon />
                 </IconButton>
             </LogoWrapper>
 
@@ -23,34 +22,31 @@ function AltNavigationBar() {
             </HomePageButton>
 
             <SearchWrapper>
-                
                 <SearchBarWrapper>
                     <IconButton>
                         <SearchIcon></SearchIcon>
                     </IconButton>
-                    
+
                     <form>
                         <input type="text" />
                         <button type="submit">Submit</button>
                     </form>
-
-                </SearchBarWrapper>    
-            </SearchWrapper> 
+                </SearchBarWrapper>
+            </SearchWrapper>
 
             <IconsWrapper>
-                <IconButton> 
+                <IconButton>
                     <NotificationsIcon></NotificationsIcon>
                 </IconButton>
-                <IconButton> 
-                    <TextsmsIcon></TextsmsIcon>
-                    </IconButton>
+
                 <IconButton>
-                     <KeyboardArrowDownIcon></KeyboardArrowDownIcon> 
+                    <TextsmsIcon></TextsmsIcon>
+                </IconButton>
+
+                <IconButton>
+                    <KeyboardArrowDownIcon></KeyboardArrowDownIcon>
                 </IconButton>
             </IconsWrapper>
-
-
-
         </Wrapper>
     )
 }
@@ -108,14 +104,13 @@ const SearchBarWrapper = styled.div`
         display: flex;
         flex: 1;
     }
-    
+
     form > input{
         background-color: transparent;
         border: none;
         width: 100%;
         margin-left: 5px;
         font-size: 16px;
-    
     }
 
     form > button{
@@ -129,11 +124,4 @@ const SearchBarWrapper = styled.div`
 
 `
 
-const IconsWrapper = styled.div`
-
-`
-
-
-
-
-
+const IconsWrapper = styled.div

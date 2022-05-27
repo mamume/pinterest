@@ -1,16 +1,13 @@
 import React from 'react';
 import './pin_styles.css'
-import axios from 'axios';
 
 class Pin extends React.Component {
-
-
-    handelfocus = () => {
+    handleFocus = () => {
         let ftarget = document.getElementById("comment_controllers")
         ftarget.classList.add("comment_vis")
     }
 
-    handelclick = () => {
+    handleClick = () => {
         let btarget = document.getElementById("comment_controllers")
         console.log(btarget)
 
@@ -18,17 +15,17 @@ class Pin extends React.Component {
         btarget.classList.add("comment_hide")
     }
 
-    handelchange = (event) => {
+    handleChange = (event) => {
         let target = document.getElementsByClassName("comment_done")
         target.item(0).disabled = false;
         target.item(0).classList.add("comment_done_edite")
-        if (event.target.value == "") {
+        if (event.target.value === "") {
             target.item(0).disabled = true;
             target.item(0).classList.remove("comment_done_edite")
         }
     }
 
-    commentclick = () => {
+    commentClick = () => {
         let dis = document.getElementById("comment_area_container")
         console.log(dis);
         dis.classList.toggle("comment_area_container");
@@ -40,8 +37,6 @@ class Pin extends React.Component {
     }
 
     render() {
-
-
         return (
             <React.Fragment>
                 <div className="container">
@@ -53,8 +48,8 @@ class Pin extends React.Component {
                                     <img src={this.props.pin.image} alt="pin_image" />
                                 </div>
                             </div>
-
                         </div>
+
                         <div className="right-side col-md-5">
                             <div className="section1 row">
                                 <div className="icons col-6">
@@ -78,7 +73,6 @@ class Pin extends React.Component {
                                     </select>
                                     <div className="save_pin_pin"><span>save</span></div>
                                 </div>
-
                             </div>
 
                             <div className="section2 row">
@@ -101,11 +95,10 @@ class Pin extends React.Component {
                                     <div className="add_note" onClick={this.NoteAdd}><span>Add note</span></div>
                                 </div>
 
-
                                 <div className="section3">
                                     <div className="comment_head">
                                         <h3>comments</h3>
-                                        <div className="comment_icon" onClick={this.commentclick}>
+                                        <div className="comment_icon" onClick={this.commentClick}>
                                             <i class="fas fa-chevron-down"></i>
                                         </div>
                                     </div>
@@ -117,36 +110,27 @@ class Pin extends React.Component {
                                         <div className="comment_area">
                                             <div className="persons_icon"><span>A</span></div>
                                             <div className="text">
-                                                <input type="text" placeholder="Add a comment" name="comment" className="comment-btn" onFocus={this.handelfocus} onChange={this.handelchange} />
+                                                <input type="text" placeholder="Add a comment" name="comment" className="comment-btn" onFocus={this.handleFocus} onChange={this.handleChange} />
                                             </div>
                                         </div>
                                         <div className="comment_controllers" id="comment_controllers">
-                                            <input type="button" value="Cancel" name="comment_canceled" className="comment_canceled" onClick={this.handelclick} />
+                                            <input type="button" value="Cancel" name="comment_canceled" className="comment_canceled" onClick={this.handleClick} />
                                             <input type="button" value="Done" name="comment_done" className="comment_done" disabled />
                                         </div>
                                     </div>
                                 </div>
-
-
                             </div>
                             <div className="bord_name">
                                 <div className="bord_items">
                                     <div className="comment_icon"><span>M</span></div>
                                     <div className="bord_content">
-                                        <span>you saved to bord name</span>
+                                        <span>you saved to board name</span>
                                     </div>
                                 </div>
                             </div>
-
-
-
-
                         </div>
                     </div>
                 </div>
-
-
-
             </React.Fragment>
         );
     }

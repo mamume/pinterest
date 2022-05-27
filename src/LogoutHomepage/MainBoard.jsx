@@ -36,7 +36,6 @@ function MainBoard() {
         fetchData()
     }, []);
 
-
     return (
         <Masonry className={classes.masonry}>
             {

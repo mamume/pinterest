@@ -31,23 +31,10 @@ export default function PrimarySearchAppBar(props) {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [, setMobileMoreAnchorEl] = React.useState(null);
   const { authedUser, headers, loading } = useContext(UserContext);
-  // const [searchValue, setSearchValue] = useState("")
-  // const [submitted, setSubmitted] = useState(false)
   const [reserve, setReserve] = useState([])
   const [profilePicture, setProfilePicture] = useState("")
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    // setSubmitted(true)
-    // let res = []
-    // for (let i = 0; i < props.pins.length; i++) {
-    //   if (props.pins[i].title.toLowerCase().includes(searchValue.toLowerCase()))
-    //     res.push(props.pins[i])
-    // }
-    // props.setPins(res);
-  }
-
-  // useEffect(() => console.log({ reserve }))
+  const handleSubmit = (e) => e.preventDefault();
 
   useEffect(() => {
     if (props.pins.length > reserve.length)
@@ -61,7 +48,6 @@ export default function PrimarySearchAppBar(props) {
       props.setPins(reserve)
     }
     else {
-      // setSubmitted(true)
       let res = []
       for (let i = 0; i < reserve.length; i++) {
         if (reserve[i].title.toLowerCase().includes(e.target.value.toLowerCase()))
@@ -70,17 +56,6 @@ export default function PrimarySearchAppBar(props) {
       props.setPins(res);
     }
   }
-
-  // useEffect(() => {
-  //   if (props.pins !== reserve && !submitted) {
-  //     setReserve(props.pins)
-  //   }
-  //   if (searchValue === "" && submitted) {
-  //     setSubmitted(false)
-  //     props.setPins(reserve)
-  //   }
-  // }, [searchValue, submitted, props, reserve])
-
 
   useEffect(() => {
     try {
@@ -177,12 +152,9 @@ export default function PrimarySearchAppBar(props) {
                 <form onSubmit={(e) => { handleSubmit(e) }}>
                   <input
                     type="text"
-                    // value={searchValue}
-                    // onChange={(e) => { setSearchValue(e.target.value) }}
                     onChange={search}
                     placeholder="Search..."
                   />
-                  {/* <button type="submit" >Submit</button> */}
                 </form>
               </SearchBarWrapper>
             </SearchWrapper>
@@ -214,7 +186,6 @@ export default function PrimarySearchAppBar(props) {
 };
 
 
-
 const SearchWrapper = styled.div`
     flex: 1;
 `
@@ -238,6 +209,7 @@ const SearchBarWrapper = styled.div`
         display: flex;
         flex: 1;
     }
+
     form > input{
         background-color: transparent;
         border: none;
@@ -255,4 +227,3 @@ const SearchBarWrapper = styled.div`
         outline: none;
     }
 `
-

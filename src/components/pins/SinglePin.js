@@ -17,12 +17,7 @@ import { saveAs } from 'file-saver'
 import CreateBoard from '../profile/CreateBoard'
 
 
-
-
 function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, pinItem }) {
-  // const downloadImage = () => {
-  //   saveAs(img, 'image.jpg') // Put your image url here.
-  // }
   const { authedUser, headers, host } = useContext(UserContext)
 
   const classes = Styles()
@@ -77,45 +72,46 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, 
                   </Link>
                   <Button size="small" style={{ color: "white", backgroundColor: "black" }}>Saved</Button>
                 </Fragment>
-
-                : <>
-                  {
-                    boards.length
-                      ? < Fragment >
-                        <FormControl size="small" fullWidth>
-                          <InputLabel id="select-board" style={{ color: "#455a64" }}>Board</InputLabel>
-                          <Select
-                            labelId="select-board"
-                            onChange={(e) => setSavedBoard(e.target.value)}
-                            label="Board"
-                            style={{ backgroundColor: "white" }}
-                            value={savedBoard}
-                            size="small"
-                          >
-                            {boards.map((item, index) => (
-                              <MenuItem value={item.id} key={index}>{item.title}</MenuItem>
-                            ))}
-                          </Select>
-                        </FormControl>
-                        <Button size="small" onClick={handlePost}>Save</Button>
-                      </Fragment>
-                      : <Button size="small" onClick={() => setOpenCreateBoard(true)}>Create Board</Button>
-                  }</>}
+                :
+                <>
+                  {boards.length
+                    ? < Fragment >
+                      <FormControl size="small" fullWidth>
+                        <InputLabel id="select-board" style={{ color: "#455a64" }}>Board</InputLabel>
+                        <Select
+                          labelId="select-board"
+                          onChange={(e) => setSavedBoard(e.target.value)}
+                          label="Board"
+                          style={{ backgroundColor: "white" }}
+                          value={savedBoard}
+                          size="small"
+                        >
+                          {boards.map((item, index) => (
+                            <MenuItem value={item.id} key={index}>{item.title}</MenuItem>
+                          ))}
+                        </Select>
+                      </FormControl>
+                      <Button size="small" onClick={handlePost}>Save</Button>
+                    </Fragment>
+                    : <Button size="small" onClick={() => setOpenCreateBoard(true)}>Create Board</Button>
+                  }
+                </>
+              }
             </Stack>
 
             <div style={{ display: "flex", height: "100%" }} onClick={onOpenPinModal} className="my_image_div"></div>
             <div className="my_modal_footer">
-              {external_link && (<a href={external_link}><div className="my_ext" style={{ position: "absolute", float: "left", bottom: "15px", left: "15px" }} >
-                <IconButton>
-                  <CallMadeIcon />
-                </IconButton>
-                <span>{external_link}</span>
-              </div> </a>)}
+              {external_link && (
+                <a href={external_link}><div className="my_ext" style={{ position: "absolute", float: "left", bottom: "15px", left: "15px" }}>
+                  <IconButton>
+                    <CallMadeIcon />
+                  </IconButton>
+                  <span>{external_link}</span>
+                </div>
+                </a>)
+              }
 
               <div className="my_send" style={{ position: "absolute", float: "right", bottom: "15px", right: "15px" }}>
-                {/* <IconButton onClick={downloadImage}>
-                  <DownloadIcon />
-                </IconButton> */}
                 <IconButton disableRipple sx={{ bgcolor: "white" }} onClick={() => saveImage(img, pinItem.title)}>
                   <DownloadIcon />
                 </IconButton>
@@ -126,7 +122,7 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, 
           <img style={{ minHeight: 236, }} src={img} alt="" />
         </CardWrapper>
       </Wrapper >
-      < CreateBoard
+      <CreateBoard
         openCreateBoard={openCreateBoard}
         closeCreateBoard={() => setOpenCreateBoard(false)
         }
@@ -152,7 +148,6 @@ const Wrapper = styled.div`
 
 const CardWrapper = styled.div`
     width: 250px;
-
     border-radius: 16px;
     background-color: black;
     position: relative;
@@ -182,6 +177,7 @@ const CardWrapper = styled.div`
         position: absolute;
         z-index: 1000;
     }
+
     .my_modal_header{
         display: flex;
         padding: 8px;
@@ -190,9 +186,11 @@ const CardWrapper = styled.div`
     .my_modal_header .One{
         flex-grow: 10;
     }
+
     .my_modal_header .Two{
         flex-grow:30 ;
     }
+
     .my_modal_header .Three{
         flex-grow: 10;
     }
@@ -212,8 +210,6 @@ const CardWrapper = styled.div`
         a{
             text-decoration: none;
         }
-
-
     }
 
     .my_ext{
@@ -240,5 +236,3 @@ const CardWrapper = styled.div`
         align-items: center;
     }
 `
-
-
