@@ -16,7 +16,6 @@ gunicorn = "*"
 dj-database-url = "*"
 whitenoise = "*"
 djoser = "*"
-drf-social-oauth2 = "*"
 django = "==3.2.9"
 djangorestframework-simplejwt = "*"
 
