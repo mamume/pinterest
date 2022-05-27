@@ -45,14 +45,6 @@ This project is a back-end clone for the Pinterest website made with Django Rest
 - To start the project run:
   - `python manage.py runserver`
 
-## Team Members
-
-- [Ahmed Saied](https://github.com/AhmedSaied94)
-- [Amr Magdy](https://github.com/Amr-Magdy95)
-- [Andrew Roshdy](https://github.com/andrew-roshdy13)
-- [Mahmoud Metwally](https://github.com/mamume)
-- [Momen Awad](https://github.com/momen-awad)
-
 ## Pinterest Front-End
 
 A Pinterest front-end clone using React.js.
@@ -60,7 +52,7 @@ A Pinterest front-end clone using React.js.
 - The back-end project can be found [here](https://github.com/mamume/pinterest-back/).
 - The Deployment of the project can be found [here](https://pinterest-final.herokuapp.com/)
 
-## Overview
+## Front-End Overview
 
 This project is a front-end clone for the Pinterest website. The project contains:
 
@@ -71,7 +63,7 @@ This project is a front-end clone for the Pinterest website. The project contain
 - **Board**: Board page that contains its pins.
 - **Navigation Bar**: Which has the Pinterest logo, logged user profile picture, and a search bar to search for pins.
 
-## Installation
+## Front-End Installation
 
 - Clone the project repo:
   - `git clone https://github.com/mamume/pinterest-front.git`
@@ -85,7 +77,7 @@ This project is a front-end clone for the Pinterest website. The project contain
   - Install all dependencies:
     - `yarn` or `yarn install`
 
-## Start Project
+## Front-End Start Project
 
 - To start the project run:
   - `yarn start`
