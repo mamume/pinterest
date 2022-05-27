@@ -6,11 +6,12 @@ import AddButton from "../components/navigationbar/AddButton"
 import { UserContext } from "../context";
 import Styles from '../styles/Styles'
 import Pin from '../components/pins/pin'
+import { CircularProgress, Stack } from "@mui/material";
 
 
 function Homepage({ pins, addItem, removeItem }) {
   const classes = Styles()
-  const { authedUser, host, headers } = useContext(UserContext)
+  const { loading, authedUser, host, headers } = useContext(UserContext)
   const [boards, setBoards] = useState([])
 
   const [open, setOpen] = useState(false)
@@ -37,19 +38,19 @@ function Homepage({ pins, addItem, removeItem }) {
 
   return (
     <Fragment>
-      {authedUser
-        ? (
-          <Fragment>
-            <AddButton addItem={addItem} />
-            <Masonry className={classes.masonry}  >
-              {pins.map((pin) => (
-                <SinglePin onOpenPinModal={() => onOpenPinModal(pin)} key={pin.id} pinItem={pin} img={pin.content_src} external_link={pin.external_website} id={pin.id} boards={boards || []} sub_board={pin.board || []} removeItem={removeItem} />
-              ))}
-            </Masonry>
-            <Pin pinItem={pinModalItem} open={open} onClose={onClosePinModal} removeItem={removeItem} />
-          </Fragment>
-        )
-        : <div>Please Login</div>}
+      {loading && !authedUser
+        ? <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
+        :
+        <Fragment>
+          <AddButton addItem={addItem} />
+          <Masonry className={classes.masonry}  >
+            {pins.map((pin) => (
+              <SinglePin onOpenPinModal={() => onOpenPinModal(pin)} key={pin.id} pinItem={pin} img={pin.content_src} external_link={pin.external_website} id={pin.id} boards={boards || []} sub_board={pin.board || []} removeItem={removeItem} />
+            ))}
+          </Masonry>
+          <Pin pinItem={pinModalItem} open={open} onClose={onClosePinModal} removeItem={removeItem} />
+        </Fragment>
+      }
     </Fragment >
   );
 }

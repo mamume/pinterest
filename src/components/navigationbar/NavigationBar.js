@@ -30,7 +30,7 @@ export default function PrimarySearchAppBar(props) {
   const classes = useStyles()
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [, setMobileMoreAnchorEl] = React.useState(null);
-  const { authedUser, headers } = useContext(UserContext);
+  const { authedUser, headers, loading } = useContext(UserContext);
   // const [searchValue, setSearchValue] = useState("")
   // const [submitted, setSubmitted] = useState(false)
   const [reserve, setReserve] = useState([])
@@ -165,7 +165,7 @@ export default function PrimarySearchAppBar(props) {
           </LogoWrapper>
         </Link>
 
-        {authedUser
+        {!loading && authedUser && (console.log({ authedUser, loading }) || true)
           ?
           <Fragment>
             <SearchWrapper>
@@ -203,12 +203,10 @@ export default function PrimarySearchAppBar(props) {
             {renderMenu}
           </Fragment>
           :
-          <>
-            <Stack width={'100%'} marginX={1} spacing={1} direction="row-reverse">
-              <Button onClick={() => runAuth("signup")}>Signup</Button>
-              <Button variant="outlined" onClick={() => runAuth("login")}>Signin</Button>
-            </Stack>
-          </>
+          <Stack width={'100%'} marginX={1} spacing={1} direction="row-reverse">
+            <Button onClick={() => runAuth("signup")}>Signup</Button>
+            <Button variant="outlined" onClick={() => runAuth("login")}>Sign in</Button>
+          </Stack>
         }
       </Toolbar>
     </AppBar>
