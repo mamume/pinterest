@@ -13,8 +13,8 @@ from .models import Profile, UserFollowing
 class ProfileSerializer(CountryFieldMixin, serializers.ModelSerializer):
     class Meta:
         model = Profile
-        fields = ['id', 'gender', 'country', 'first_name', 'last_name', 'full_name', 'profile_pic', 'email',
-                  'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards', 'website']
+        fields = ['id', 'gender', 'country', 'first_name', 'last_name', 'full_name', 'profile_pic',
+                  'email', 'username', 'bio', 'following_count', 'followers_count', 'pins', 'boards', 'website']
 
     full_name = serializers.SerializerMethodField('get_full_name')
     following_count = serializers.SerializerMethodField('get_following_count')
