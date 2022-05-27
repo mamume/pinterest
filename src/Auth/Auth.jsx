@@ -56,7 +56,6 @@ export default class Auth extends React.Component {
               password: user.password,
             }))
             .then(res2 => {
-              console.log(res2)
               localStorage.setItem('pinterestAccessToken', res2.data.access)
               localStorage.setItem('pinterestRefreshToken', res2.data.refresh)
               window.location.href = '/'
@@ -81,14 +80,12 @@ export default class Auth extends React.Component {
         grant_type: "password",
       })
       .then(res => {
-        console.log(res)
         localStorage.setItem('pinterestAccessToken', res.data.access)
         localStorage.setItem('pinterestRefreshToken', res.data.refresh)
         axiosFetchInstance.defaults.headers['Authorization'] = `JWT ${res.data.access}`
         window.location.reload()
       })
       .catch(err => {
-        console.log(err)
         this.loginUnSavedRef.current.state.loginFailed = true;
         this.loginUnSavedRef.current.setState({ loginPassword: "" })
       })

@@ -36,16 +36,13 @@ const check_size = (event) => {
 }
 
 const handelFocus = (event) => {
-    let ftitle = event.target
-    console.log(ftitle)
-    ftitle.classList.add("pin_title_on_focus");
-    console.log("changed")
+    let fTitle = event.target
+    fTitle.classList.add("pin_title_on_focus");
 }
 
 const handelBlur = (event) => {
-    let ftitle = event.target
-    ftitle.classList.remove("pin_title_on_focus");
-    console.log("changed")
+    let fTitle = event.target
+    fTitle.classList.remove("pin_title_on_focus");
 }
 
 const handelClick = (event) => {

@@ -2,17 +2,15 @@ import React, { useState } from 'react';
 
 
 function Practice() {
-    const [email, setEmail] = useState("");
-    const [password, setPassword] = useState("");
+    const [setEmail] = useState("");
+    const [setPassword] = useState("");
 
     function handelChange(e) {
         setEmail(e.target.value)
-        console.log(email);
     }
 
     function handelPassword(e) {
         setPassword(e.target.value)
-        console.log(password);
     }
 
     return (

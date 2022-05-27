@@ -42,8 +42,6 @@ export default function PrimarySearchAppBar(props) {
   }, [props.pins, reserve.length])
 
   function search(e) {
-    console.log(e.target.value)
-
     if (e.target.value === '') {
       props.setPins(reserve)
     }
@@ -140,7 +138,7 @@ export default function PrimarySearchAppBar(props) {
           </LogoWrapper>
         </Link>
 
-        {!loading && authedUser && (console.log({ authedUser, loading }) || true)
+        {!loading && authedUser
           ?
           <Fragment>
             <SearchWrapper>

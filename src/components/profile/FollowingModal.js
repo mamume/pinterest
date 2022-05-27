@@ -32,7 +32,6 @@ function FollowingModal({ username, open, onClose, handleFollow, handleUnfollow,
     )
       .then(res => res.json())
       .then(data => {
-        console.log(data)
         setAuthedFollowingIds(data.map(user => (user.following[0].id)))
       })
   }, [authedUser?.username, headers, host, authedUser?.following, updateTrigger])

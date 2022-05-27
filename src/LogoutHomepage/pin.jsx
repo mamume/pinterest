@@ -3,16 +3,15 @@ import './pin_styles.css'
 
 class Pin extends React.Component {
     handleFocus = () => {
-        let ftarget = document.getElementById("comment_controllers")
-        ftarget.classList.add("comment_vis")
+        let fTarget = document.getElementById("comment_controllers")
+        fTarget.classList.add("comment_vis")
     }
 
     handleClick = () => {
-        let btarget = document.getElementById("comment_controllers")
-        console.log(btarget)
+        let bTarget = document.getElementById("comment_controllers")
 
-        btarget.classList.remove("comment_vis")
-        btarget.classList.add("comment_hide")
+        bTarget.classList.remove("comment_vis")
+        bTarget.classList.add("comment_hide")
     }
 
     handleChange = (event) => {
@@ -27,13 +26,7 @@ class Pin extends React.Component {
 
     commentClick = () => {
         let dis = document.getElementById("comment_area_container")
-        console.log(dis);
         dis.classList.toggle("comment_area_container");
-        console.log("done")
-    }
-
-    NoteAdd = () => {
-        console.log("note added");
     }
 
     render() {

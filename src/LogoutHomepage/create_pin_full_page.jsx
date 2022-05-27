@@ -10,7 +10,6 @@ class FullPage extends React.Component {
     async componentDidMount() {
         const { data } = await axios.get('http://localhost:9000/pin');
         this.setState({ pin: data })
-        console.log(this.state.pin);
     }
 
     render() {

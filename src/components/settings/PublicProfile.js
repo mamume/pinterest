@@ -40,8 +40,6 @@ function PublicProfile() {
     data.append('username', username)
     imageData && data.append('profile_pic', imageData)
 
-    console.log(data)
-
     fetch(`${host}/profile/update/${authedUser.id}/`, {
       headers: {
         'Authorization': headers.Authorization

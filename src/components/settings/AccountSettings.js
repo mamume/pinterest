@@ -31,8 +31,6 @@ function AccountSettings() {
     data.append('country', country)
     data.append('gender', gender)
 
-    console.log(country)
-
     fetch(`${host}/profile/update/${authedUser.id}/`, {
       headers: {
         'Authorization': headers.Authorization

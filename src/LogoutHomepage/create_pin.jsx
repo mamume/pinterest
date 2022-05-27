@@ -33,23 +33,19 @@ const check_size = (event) => {
 }
 
 const handelFocus = (event) => {
-    let ftitle = event.target
-    console.log(ftitle)
-    ftitle.classList.add("pin_title_on_focus");
-    console.log("changed")
+    let fTitle = event.target
+    fTitle.classList.add("pin_title_on_focus");
 }
 
 const handelBlur = (event) => {
-    let ftitle = event.target
-    ftitle.classList.remove("pin_title_on_focus");
-    console.log("changed")
-
+    let fTitle = event.target
+    fTitle.classList.remove("pin_title_on_focus");
 }
 
 const handelClick = (event) => {
     event.target.classList.add("alt_text_btn_disappears")
-    let alttext = document.getElementsByClassName("alt_text")
-    alttext.item(0).classList.add("alt_text_display")
+    let altText = document.getElementsByClassName("alt_text")
+    altText.item(0).classList.add("alt_text_display")
 }
 const MoreOptions = () => {
     let element = document.getElementsByClassName("more_options_btn");
@@ -57,7 +53,7 @@ const MoreOptions = () => {
 }
 
 const Create = () => {
-    const [pinDetails, setpinDetails] = useState({
+    const [pinDetails, setPinDetails] = useState({
         author: "",
         board: "",
         title: "",
@@ -66,7 +62,7 @@ const Create = () => {
         img_blob: ""
     });
 
-    const [showLable, setShowLabel] = useState(true);
+    const [showLabel, setShowLabel] = useState(true);
     const [showModalPin, setShowModalPin] = useState(false);
     return (
         <div>
@@ -82,7 +78,7 @@ const Create = () => {
                         <div className="section2">
                             <label htmlFor="upload_img" id="upload_img_label"
                                 style={{
-                                    display: showLable ? "block" : "none"
+                                    display: showLabel ? "block" : "none"
                                 }}
                             >
                                 <div className="upload_img_container">
@@ -91,11 +87,11 @@ const Create = () => {
                                             <img src="/images/up-arrow.png" alt="upload_img" className="pin_mock_icon" />
                                         </div>
                                         <div>click to upload</div>
-                                        <div id="recommend">Recmmendation: use high-quality .jpg files <br />less than 20 MB</div>
+                                        <div id="recommend">Recommendation: use high-quality .jpg files <br />less than 20 MB</div>
                                     </div>
                                 </div>
 
-                                <input onChange={event => upload_img(event, pinDetails, setpinDetails, setShowLabel, setShowModalPin)} type="file" name="upload_img" id="upload_img" value="" />
+                                <input onChange={event => upload_img(event, pinDetails, setPinDetails, setShowLabel, setShowModalPin)} type="file" name="upload_img" id="upload_img" value="" />
                             </label>
                             <div className="modals_pin"
                                 style={{
