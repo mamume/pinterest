@@ -1,7 +1,8 @@
-.css-hz1bth-MuiDialog-container{
+.css-hz1bth-MuiDialog-container {
     height: auto !important;
 }
-.css-zw3mfo-MuiModal-root-MuiDialog-root{
+
+.css-zw3mfo-MuiModal-root-MuiDialog-root {
     position: absolute !important;
 
 }
@@ -13,7 +14,7 @@
     max-height: none !important;
 }
 
-.css-twia2z-MuiPaper-root-MuiDialog-paper{
+.css-twia2z-MuiPaper-root-MuiDialog-paper {
     border-radius: 30px !important;
     padding-right: 0rem !important;
     padding-left: 0rem !important;
@@ -35,11 +36,13 @@
     text-decoration: none;
     cursor: pointer;
 }
-a{
+
+a {
     color: black;
     text-decoration: none;
 }
-a:hover{
+
+a:hover {
     text-decoration: underline;
 }
 
@@ -74,13 +77,14 @@ a:hover{
 .css-9ddj71-MuiInputBase-root-MuiOutlinedInput-root {
     border-color: #e60023 !important;
 }
-.css-ekeie0{
+
+.css-ekeie0 {
     height: auto !important;
 }
-.css-126xj0f{
+
+.css-126xj0f {
     position: absolute !important;
 }
-
 
 .css-1jdob15 {
     border-radius: 30px !important;
@@ -89,7 +93,7 @@ a:hover{
     max-height: none !important;
 }
 
-.css-1xp58ha{
+.css-1xp58ha {
     border-radius: 30px !important;
     padding-right: 0rem !important;
     padding-left: 0rem !important;
@@ -102,7 +106,7 @@ a:hover{
     padding-right: 0rem !important;
 }
 
-.css-17x63fa{
+.css-17x63fa {
     margin: auto !important;
 }
 
@@ -113,15 +117,12 @@ a:hover{
     background-color: black !important;
 }
 
-
 .css-454acy {
     width: 6px !important;
     height: 6px !important;
     margin: 2px 15px !important;
 
 }
-
-
 
 .css-1xhj18k {
     margin: auto !important;

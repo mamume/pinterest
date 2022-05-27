@@ -8,7 +8,6 @@ import {
   DialogTitle,
   Typography,
   IconButton,
-  // Divider,
   Alert
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
@@ -93,7 +92,6 @@ export default class LoginUnSaved extends React.Component {
               type="text"
               fullWidth
               variant="outlined"
-              // value={this.state.loginUsername}
               onChange={this.collectInput}
               helperText={this.validator.message('Username', this.state.loginUsername, 'required', { style: { color: 'red' } })}
             />

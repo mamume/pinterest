@@ -10,7 +10,6 @@ import {
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import PinterestIcon from '@mui/icons-material/Pinterest';
-// import axiosInstance from '../axios/Base'
 import SimpleReactValidator from 'simple-react-validator';
 
 
@@ -29,8 +28,6 @@ export default class Main extends React.Component {
       email: "",
       username: "",
       password: "",
-      // confirmPassword: "",
-      // age: "",
       emailError: false
     }
   }
@@ -44,20 +41,9 @@ export default class Main extends React.Component {
       email: this.state.email,
       password: this.state.password,
       username: this.state.username,
-      // age: this.state.age,
     }
     if (this.validator.allValid()) {
-      // axiosInstance
-      // .post('/account/checkmail', { "email": this.state.email })
-      // .then(res => {
-      // console.log(res)
-      // if (res.data.success) {
       this.props.collect(data)
-      // this.props.switch('first')
-      // } else {
-      // this.setState({ emailError: true })
-      // }
-      // })
     } else {
       this.validator.showMessages()
       this.forceUpdate()
@@ -111,7 +97,6 @@ export default class Main extends React.Component {
               type="email"
               fullWidth
               variant="outlined"
-              // value={this.state.email}
               onChange={this.collectInput}
               helperText={
                 this.state.emailError ?
@@ -129,7 +114,6 @@ export default class Main extends React.Component {
               type="text"
               fullWidth
               variant="outlined"
-              // value={this.state.username}
               onChange={this.collectInput}
             />
             <TextField
@@ -146,33 +130,6 @@ export default class Main extends React.Component {
               onChange={this.collectInput}
               helperText={this.validator.message('password', this.state.password, "required")}
             />
-            {/* <TextField
-              required
-              sx={this.props.inputStyle}
-              margin="dense"
-              name="confirm-password"
-              id="confirm-password"
-              label="Confirm Password"
-              type="password"
-              fullWidth
-              variant="outlined"
-              value={this.state.confirmPassword}
-              onChange={this.collectInput}
-              helperText={this.validator.message('confirm password', this.state.confirmPassword, "required")}
-            /> */}
-            {/* <TextField
-              sx={this.props.inputStyle}
-              margin="dense"
-              name="age"
-              id="age"
-              label="Age"
-              type="number"
-              fullWidth
-              variant="outlined"
-              value={this.state.age}
-              onChange={this.collectInput}
-              helperText={this.validator.message('age', this.state.age, "required|min:2")}
-            /> */}
             <div style={{ width: "100%", marginTop: '0.5rem' }}>
               <Button
                 onClick={this.sendData}
@@ -199,7 +156,6 @@ export default class Main extends React.Component {
           </Typography>
         </DialogContentText>
       </DialogContent>
-
     </Dialog>
   }
 }

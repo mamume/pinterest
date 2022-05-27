@@ -21,7 +21,7 @@ class Profile(models.Model):
     gender = models.CharField(max_length=6, blank=True, null=True)
     country = CountryField(blank=True, null=True)
     profile_pic = models.ImageField(
-        upload_to='account/profile_pics', null=True, blank=True)
+        upload_to='profile/avatars', null=True, blank=True)
     website = models.URLField(null=True, blank=True)
 
     is_active = models.BooleanField(default=True)
