@@ -4,7 +4,7 @@ from django.urls import path
 from . import views
 
 urlpatterns = [
-    path('create', views.pin_create),
+    path('create/', views.pin_create),
     path('link_board', views.link_board),
     path('pins/', views.pin_list),
     path('<int:pk>/', views.single_pin),

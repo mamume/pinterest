@@ -29,7 +29,6 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('pinterestAccessToken')) {
-
       fetch(`${host}/profile/list/`, { headers })
         .then(res => res.json())
         .then(data => {

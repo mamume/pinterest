@@ -62,7 +62,7 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
             }
 
             if (host) {
-                fetch(`${host}/pin/create`, {
+                fetch(`${host}/pin/create/`, {
                     method: 'POST',
                     body: fd,
                     headers: {

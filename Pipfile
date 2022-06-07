@@ -14,10 +14,12 @@ django-extensions = "*"
 pip = "*"
 gunicorn = "*"
 dj-database-url = "*"
-whitenoise = "*"
+whitenoise = {extras = ["brotli"], version = "*"}
 djoser = "*"
 django = "==3.2.9"
 djangorestframework-simplejwt = "*"
+install = "*"
+django-on-heroku = "*"
 
 [dev-packages]
 autopep8 = "*"

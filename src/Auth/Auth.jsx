@@ -91,6 +91,10 @@ export default class Auth extends React.Component {
       })
   }
 
+  switchScreen = (screen) => {
+    this.setState({ Cscreen: screen })
+  }
+
   render() {
     const CssTextField = {
       '& label.Mui-focused': {
