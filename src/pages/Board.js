@@ -82,7 +82,7 @@ function Board({ addItem }) {
       method: 'DELETE'
     })
       .then(
-        window.location.href = `http://localhost:3000/profile`
+        window.location.href = `https://pinterest-mamume.herokuapp.com/profile`
       )
   }
 

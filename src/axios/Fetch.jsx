@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'http://localhost:8000'
+const baseUrl = 'https://pinterest-mamume.herokuapp.com'
 const axiosFetchInstance = axios.create({
     baseURL: baseUrl,
     timeout: 5000,

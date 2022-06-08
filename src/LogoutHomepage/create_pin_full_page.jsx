@@ -8,7 +8,7 @@ class FullPage extends React.Component {
     }
 
     async componentDidMount() {
-        const { data } = await axios.get('http://localhost:9000/pin');
+        const { data } = await axios.get('https://pinterest-mamume.herokuapp.com/pin');
         this.setState({ pin: data })
     }
 

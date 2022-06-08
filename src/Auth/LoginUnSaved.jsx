@@ -111,7 +111,7 @@ export default class LoginUnSaved extends React.Component {
             />
             <DialogContentText ml={1} sx={{ textAlign: "left" }}>
               <Typography component={'span'} variant="subtitle2">
-                <a href="http://localhost:3000/password-reset">Forgot your password?</a>
+                <a href="https://pinterest-mamume.herokuapp.com/password-reset">Forgot your password?</a>
               </Typography>
             </DialogContentText>
 
