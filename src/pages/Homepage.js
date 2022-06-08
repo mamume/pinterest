@@ -22,7 +22,6 @@ function Homepage({ pins, addItem, removeItem }) {
       fetch(`${host}/board/list?owner_id=${authedUser.id}`, { headers })
         .then(res => res.json())
         .then(data => setBoards(data))
-
     }
   }, [authedUser?.id, headers, host])
 
