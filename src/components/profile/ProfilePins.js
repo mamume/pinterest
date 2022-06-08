@@ -31,7 +31,7 @@ function ProfilePins({ pins, isAuthedProfile }) {
   function removeFromProfile(id) {
     const newPins = pinItems.filter(pin => pin.id !== id)
 
-    fetch(`${host}/profile/pins-delete/${id}/`, {
+    fetch(`${host}/user_profile/pins-delete/${id}/`, {
       headers,
       method: "DELETE"
     })

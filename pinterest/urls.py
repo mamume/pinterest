@@ -24,7 +24,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('__debug__/', include(debug_toolbar.urls)),
     path('board/', include('board.urls')),
-    path('profile/', include('user_profile.urls')),
+    path('user_profile/', include('user_profile.urls')),
     path('pin/', include('pin.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),

@@ -26,7 +26,7 @@ function PublicProfile() {
       data.append('old_password', oldPassword)
       data.append('new_password', newPassword)
 
-      fetch(`${host}/profile/update-password`, {
+      fetch(`${host}/user_profile/update-password`, {
         headers: {
           'Authorization': headers.Authorization
         },

@@ -31,7 +31,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('pinterestAccessToken')) {
-      fetch(`${host}/profile/list/`, { headers })
+      fetch(`${host}/user_profile/list/`, { headers })
         .then(res => res.json())
         .then(data => {
           if (data[0]?.username)

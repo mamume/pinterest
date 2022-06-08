@@ -20,7 +20,7 @@ function Pin({ open, onClose, removeItem, pinItem }) {
 
 	useEffect(() => {
 		if (pin.owner) {
-			fetch(`${host}/profile/details/${pin.owner}`, { headers })
+			fetch(`${host}/user_profile/details/${pin.owner}`, { headers })
 				.then(res => {
 					return res.json()
 				})
@@ -31,7 +31,7 @@ function Pin({ open, onClose, removeItem, pinItem }) {
 	}, [headers, host, pin])
 
 	const handleDelete = () => {
-		fetch(`${host}/profile/pins-delete/${pin.id}/`, {
+		fetch(`${host}/user_profile/pins-delete/${pin.id}/`, {
 			headers,
 			method: "DELETE"
 		})
@@ -79,11 +79,11 @@ function Pin({ open, onClose, removeItem, pinItem }) {
 							?
 							<>
 								<Stack direction="row" alignItems="center" spacing={1}>
-									<a href={`/profile?username=${owner.username}`} className={classes.link}>
+									<a href={`/user_profile?username=${owner.username}`} className={classes.link}>
 										<Avatar src={owner.profile_pic || ""} />
 									</a>
 
-									<a href={`/profile?username=${owner.username}`} className={classes.link}>
+									<a href={`/user_profile?username=${owner.username}`} className={classes.link}>
 										<Typography>{owner.full_name || owner.username}</Typography>
 									</a>
 								</Stack>

@@ -55,13 +55,13 @@ function Profile({ addItem }) {
   useEffect(() => {
     setUrl(
       usernameParam
-        ? `${host}/profile/list?username=${usernameParam}`
-        : `${host}/profile/list`
+        ? `${host}/user_profile/list?username=${usernameParam}`
+        : `${host}/user_profile/list`
     )
   }, [host, usernameParam])
 
   useEffect(() => {
-    fetch(`${host}/profile/following/`, { headers })
+    fetch(`${host}/user_profile/following/`, { headers })
       .then(res => res.json())
       .then(data => {
         const followingUsers = data[0]?.following
@@ -119,7 +119,7 @@ function Profile({ addItem }) {
   async function handleFollow(e, id = userId) {
     let statusCode
 
-    await fetch(`${host}/profile/follow/${id}`, { headers })
+    await fetch(`${host}/user_profile/follow/${id}`, { headers })
       .then(res => res.status)
       .then((status) => statusCode = status)
 
@@ -134,7 +134,7 @@ function Profile({ addItem }) {
   async function handleUnfollow(e, id = userId) {
     let statusCode
 
-    await fetch(`${host}/profile/unfollow/${id}`, { headers })
+    await fetch(`${host}/user_profile/unfollow/${id}`, { headers })
       .then(res => res.status)
       .then(status => statusCode = status)
 

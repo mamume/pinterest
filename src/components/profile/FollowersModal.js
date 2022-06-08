@@ -18,7 +18,7 @@ function FollowersModal({ open, onClose, followersNum, username, handleFollow, h
   }, [])
 
   useEffect(() => {
-    fetch(`${host}/profile/followers?username=${username}`, { headers })
+    fetch(`${host}/user_profile/followers?username=${username}`, { headers })
       .then(res => res.json())
       .then(data => {
         setFollowers(data.map(user => ({
@@ -33,7 +33,7 @@ function FollowersModal({ open, onClose, followersNum, username, handleFollow, h
   useEffect(() => {
     if (!loading)
       fetch(
-        `${host}/profile/following/`,
+        `${host}/user_profile/following/`,
         { headers }
       )
         .then(res => res.json())

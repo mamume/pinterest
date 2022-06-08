@@ -31,7 +31,7 @@ function AccountSettings() {
     data.append('country', country)
     data.append('gender', gender)
 
-    fetch(`${host}/profile/update/${authedUser.id}/`, {
+    fetch(`${host}/user_profile/update/${authedUser.id}/`, {
       headers: {
         'Authorization': headers.Authorization
       },
@@ -46,7 +46,7 @@ function AccountSettings() {
   }
 
   const HDelete = async () => {
-    fetch(`${host}/profile/delete`, { headers, method: 'DELETE' })
+    fetch(`${host}/user_profile/delete`, { headers, method: 'DELETE' })
 
     localStorage.removeItem('pinterestAccessToken')
     localStorage.removeItem('pinterestRefreshToken')

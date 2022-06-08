@@ -40,7 +40,7 @@ function PublicProfile() {
     data.append('username', username)
     imageData && data.append('profile_pic', imageData)
 
-    fetch(`${host}/profile/update/${authedUser.id}/`, {
+    fetch(`${host}/user_profile/update/${authedUser.id}/`, {
       headers: {
         'Authorization': headers.Authorization
       },
@@ -134,7 +134,7 @@ function PublicProfile() {
       <TextField
         fullWidth
         label="Username"
-        helperText={`www.pinterest.com/profile/${username}`}
+        helperText={`https://pinterest-mamume.herokuapp.com/user_profile/${username}`}
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
