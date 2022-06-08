@@ -65,22 +65,27 @@ function Profile({ addItem }) {
       .then(res => res.json())
       .then(data => {
         const followingUsers = data[0]?.following
-        try {
-          for (const user of followingUsers) {
-            if (user.username === userName) {
-              setFollowed(true)
-              break
+        if (followingUsers) {
+          try {
+            for (const user of followingUsers) {
+              if (user.username === userName) {
+                setFollowed(true)
+                break
+              }
             }
+          } catch (error) {
+            console.log({ error })
           }
-        } catch (error) {
-          console.log({ error })
         }
       })
   }, [headers, host, userName])
 
   useEffect(() => {
+    console.log({ url })
     fetch(url, { headers })
-      .then(res => res.json())
+      .then(res => {
+        return res.json()
+      })
       .then(data => {
         if (!data.length)
           setNotFound(true)
@@ -97,10 +102,14 @@ function Profile({ addItem }) {
           setBoardItems(boards)
         }
       })
+      .catch((error, res) => console.log({ error, res }))
   }, [headers, url, followed, updateTrigger])
 
   useEffect(() => {
-    userName && userId && setLoaded(true)
+    console.log({ userName, userId })
+    if (userName && userId) {
+      setLoaded(true)
+    }
   }, [userName, userId])
 
   useEffect(() => {
