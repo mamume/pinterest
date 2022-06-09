@@ -28,7 +28,7 @@ urlpatterns = [
     path('pin/', include('pin.urls')),
     path('auth/', include('djoser.urls')),
     path('auth/', include('djoser.urls.jwt')),
-    path('app/', TemplateView.as_view(template_name='index.html')),
+    path('app/*', TemplateView.as_view(template_name='index.html')),
 ]
 
 if settings.DEBUG:
