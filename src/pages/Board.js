@@ -82,7 +82,7 @@ function Board({ addItem }) {
       method: 'DELETE'
     })
       .then(
-        window.location.href = `https://pinterest-mamume.herokuapp.com/profile`
+        window.location.href = `${process.env.REACT_APP_BACK_HOST}/app/profile`
       )
   }
 
@@ -95,7 +95,7 @@ function Board({ addItem }) {
             ? (
               <Fragment>
                 <Stack direction="column" alignItems="center">
-                  <Avatar src={coverImage || '/images/board_placeholder.png'} sx={{ width: 120, height: 120 }} size='large' alt="Profile Image">
+                  <Avatar src={coverImage || '/static/images/board_placeholder.png'} sx={{ width: 120, height: 120 }} size='large' alt="Profile Image">
                   </Avatar>
                   <Stack direction='row' alignItems="baseline">
                     <Typography mt fontWeight="bold" variant="h4">{title}</Typography>

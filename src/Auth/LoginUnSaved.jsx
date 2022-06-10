@@ -14,6 +14,7 @@ import CloseIcon from '@mui/icons-material/Close';
 import PinterestIcon from '@mui/icons-material/Pinterest';
 import SimpleReactValidator from 'simple-react-validator';
 
+
 export default class LoginUnSaved extends React.Component {
   constructor() {
     super()
@@ -44,6 +45,7 @@ export default class LoginUnSaved extends React.Component {
   }
 
   render() {
+
     return (
       <Dialog open={this.props.open} maxWidth='xs' fullWidth={false}>
         <DialogTitle>
@@ -111,7 +113,7 @@ export default class LoginUnSaved extends React.Component {
             />
             <DialogContentText ml={1} sx={{ textAlign: "left" }}>
               <Typography component={'span'} variant="subtitle2">
-                <a href="https://pinterest-mamume.herokuapp.com/password-reset">Forgot your password?</a>
+                <a href={`${process.env.REACT_APP_BACK_HOST}/password-reset`}>Forgot your password?</a>
               </Typography>
             </DialogContentText>
 
@@ -128,7 +130,7 @@ export default class LoginUnSaved extends React.Component {
                 marginTop: '1.5rem',
               }}
             >
-              Next
+              Login
             </Button>
 
             <DialogContentText>
@@ -138,7 +140,7 @@ export default class LoginUnSaved extends React.Component {
             </DialogContentText>
           </div>
         </DialogContent>
-      </Dialog>
+      </Dialog >
     )
   }
 }

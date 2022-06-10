@@ -73,7 +73,7 @@ const handleSave = async (pinDetails) => {
         pin_destination: document.getElementById("pin_destination").value,
 
     }
-    await axios.post("https://pinterest-mamume.herokuapp.com/pin", newPin)
+    await axios.post(`${process.env.REACT_APP_BACK_HOST}/pin`, newPin)
 }
 
 

@@ -36,7 +36,7 @@ function PublicProfile() {
         .then(res => res.status)
         .then((data) => {
           if (data === 200)
-            window.location.href = `https://pinterest-mamume.herokuapp.com/profile`
+            window.location.href = `${process.env.REACT_APP_BACK_HOST}/app/profile`
         })
     }
   }

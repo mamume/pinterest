@@ -51,14 +51,14 @@ export default class Auth extends React.Component {
       .then(res => {
         if (res.statusText === 'Created')
           axiosInstance
-            .post('auth/jwt/create/', JSON.stringify({
+            .post('/auth/jwt/create/', JSON.stringify({
               username: res.data.username,
               password: user.password,
             }))
             .then(res2 => {
               localStorage.setItem('pinterestAccessToken', res2.data.access)
               localStorage.setItem('pinterestRefreshToken', res2.data.refresh)
-              window.location.href = '/'
+              window.location.href = '/app/'
             })
       })
       .catch(err => console.log(err))
@@ -74,7 +74,7 @@ export default class Auth extends React.Component {
 
   collectFromLoginUnSaved = (obj) => {
     axiosInstance
-      .post('auth/jwt/create', {
+      .post('/auth/jwt/create', {
         username: obj.loginUsername,
         password: obj.loginPassword,
         grant_type: "password",

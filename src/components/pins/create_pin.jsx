@@ -132,7 +132,7 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
                                     }}
                                 >
                                     <div className="dotted_border">
-                                        <img style={{ maxHeight: 'inherit' }} src={imageSrc || "/images/upload_image_placeholder.svg"} alt="upload_img" className="pin_mock_icon" onChange={(e) => { handleImageChange(e) }} />
+                                        <img style={{ maxHeight: 'inherit' }} src={imageSrc || "/static/images/upload_image_placeholder.svg"} alt="upload_img" className="pin_mock_icon" onChange={(e) => { handleImageChange(e) }} />
                                     </div>
 
                                     <input onChange={event => handleImageChange(event)} type="file" name="upload_img" id="upload_img" value="" />

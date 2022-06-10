@@ -85,7 +85,7 @@ export default function PrimarySearchAppBar(props) {
     localStorage.setItem("pinterestRefreshToken", "")
     setAnchorEl(null);
     handleMobileMenuClose();
-    window.location.href = "/"
+    window.location.href = "/app/"
   }
 
   const menuId = 'primary-search-account-menu';
@@ -106,13 +106,13 @@ export default function PrimarySearchAppBar(props) {
       onClose={handleMenuClose}
     >
 
-      <Link to="/profile/" className={classes.link}>
+      <Link to="/app/profile/" className={classes.link}>
         <MenuItem onClick={handleMenuClose}>
           Profile
         </MenuItem>
       </Link>
 
-      <Link to="/settings/" className={classes.link}>
+      <Link to="/app/settings/" className={classes.link}>
         <MenuItem onClick={handleMenuClose}>
           Settings
         </MenuItem>

@@ -1,25 +1,26 @@
-import { ThemeProvider } from "@mui/material/styles";
-import Profile from './pages/Profile'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom'
-import theme from './styles/Theme'
-import Settings from "./pages/Settings"
-import Homepage from "./pages/Homepage";
-import Board from './pages/Board'
-import NavigationBar from './components/navigationbar/NavigationBar'
 import { CircularProgress, Container, CssBaseline, Stack } from "@mui/material";
-import { Fragment, useEffect, useState, useRef } from "react";
-import Create from './components/pins/create_pin'
-import Pin from './components/pins/pin'
+import { ThemeProvider } from "@mui/material/styles";
+import { Fragment, useEffect, useRef, useState } from "react";
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import Auth from './Auth/Auth';
+import PwReset from './Auth/PwReset';
+import PwResetConfirm from './Auth/PwResetConfirm';
+import NavigationBar from './components/navigationbar/NavigationBar';
+import Create from './components/pins/create_pin';
+import Pin from './components/pins/pin';
 import { UserContext } from "./context";
-import PwReset from './Auth/PwReset'
-import PwResetConfirm from './Auth/PwResetConfirm'
-import Auth from './Auth/Auth'
-import LogoutHomepage from './LogoutHomepage/App'
+import LogoutHomepage from './LogoutHomepage/App';
+import Board from './pages/Board';
+import Homepage from "./pages/Homepage";
+import Profile from './pages/Profile';
+import Settings from "./pages/Settings";
+import theme from './styles/Theme';
 
 
 function App() {
   // const [host] = useState('http://localhost:8000')
-  const [host] = useState('https://pinterest-mamume.herokuapp.com')
+  // const [host] = useState('https://pinterest-mamume.herokuapp.com')
+  const [host] = useState(process.env.REACT_APP_BACK_HOST)
 
   const [headers, setHeaders] = useState({
     "content-type": "application/json",
@@ -30,7 +31,8 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    if (localStorage.getItem('pinterestAccessToken')) {
+    console.log(process.env.REACT_APP_BACK_HOST)
+    if (localStorage.getItem('pinterestAccessToken') && host) {
       fetch(`${host}/user_profile/list/`, { headers })
         .then(res => res.json())
         .then(data => {
@@ -40,6 +42,7 @@ function App() {
             setAuthedUser(null)
         })
         .then(setLoading(false))
+        .catch(err => console.log(err))
     }
   }, [headers, host])
 
@@ -53,12 +56,11 @@ function App() {
   }
 
   useEffect(() => {
-    localStorage.getItem('pinterestAccessToken') &&
+    localStorage.getItem('pinterestAccessToken') && host &&
       fetch(`${host}/pin/pins/`, { headers })
         .then(res => res.json())
-        .then(data => {
-          setPins(data)
-        })
+        .then(data => setPins(data))
+        .catch(err => console.log(err))
   }, [headers, host])
 
   const AuthRef = useRef();
@@ -80,19 +82,19 @@ function App() {
                   ? <Stack direction="row" justifyContent="center" mt={10}><CircularProgress /></Stack>
                   :
                   <Routes>
-                    <Route path="/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
-                    <Route path="/profile/" element={<Profile addItem={addItem} />} />
-                    <Route path="/profile/:usernameParam" element={<Profile addItem={addItem} />} />
-                    <Route path="/settings/*" element={<Settings />} />
-                    <Route path="/board/" element={<Board addItem={addItem} />} />
-                    <Route path="/create_pin/" element={<Create />} />
-                    <Route path='/pin/:id' element={<Pin />} />
+                    <Route path="app/" exact element={<Homepage pins={pins} addItem={addItem} removeItem={removeItem} />} />
+                    <Route path="app/profile/" element={<Profile addItem={addItem} />} />
+                    <Route path="app/profile/:usernameParam" element={<Profile addItem={addItem} />} />
+                    <Route path="app/settings/*" element={<Settings />} />
+                    <Route path="app/board/" element={<Board addItem={addItem} />} />
+                    <Route path="app/create_pin/" element={<Create />} />
+                    <Route path='app/pin/:id' element={<Pin />} />
                   </Routes>
                 :
                 <Routes>
-                  <Route path="/" exact element={<LogoutHomepage />} />
-                  <Route path="/password-reset" element={<PwReset />} />
-                  <Route path="/password-reset/confirm" element={<PwResetConfirm />} />
+                  <Route path="app/" exact element={<LogoutHomepage />} />
+                  <Route path="app/password-reset" element={<PwReset />} />
+                  <Route path="app/password-reset/confirm" element={<PwResetConfirm />} />
                 </Routes>
               }
             </Container>

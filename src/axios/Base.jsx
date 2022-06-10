@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const baseUrl = 'https://pinterest-mamume.herokuapp.com'
+const baseUrl = process.env.REACT_APP_BACK_HOST
 
 const axiosInstance = axios.create({
     baseURL: baseUrl,

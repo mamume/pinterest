@@ -25,7 +25,7 @@ function CreateBoard({ openCreateBoard, closeCreateBoard }) {
     })
       .then(res => res.json())
       .then(data => {
-        navigate(`/board?board_id=${data.id}`)
+        navigate(`/app/board?board_id=${data.id}`)
       })
   }
 

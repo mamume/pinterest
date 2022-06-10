@@ -63,7 +63,7 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, 
               {linked
                 ? <Fragment>
                   <Link
-                    to={`/board?board_id=${subBoard.id}`}
+                    to={`/app/board?board_id=${subBoard.id}`}
                     className={classes.link}
                   >
                     <Box sx={{ bgcolor: "white", borderRadius: 1, p: "5px" }}>

@@ -12,17 +12,17 @@ function BoardThumbnail({ board, isAuthedProfile }) {
 
   useEffect(() => {
     if (!board.share && !isAuthedProfile)
-      setPins({ content_src: "/images/private_board.png", title: "Private" })
+      setPins({ content_src: "/static/images/private_board.png", title: "Private" })
     else {
       setPins(board.pins.slice(0, 3))
 
       if (board.pins.length === 0)
-        setPins({ content_src: "/images/board_placeholder.png", title: "No Content" })
+        setPins({ content_src: "/static/images/board_placeholder.png", title: "No Content" })
     }
   }, [board.pins, board.share, isAuthedProfile])
 
   function openBoard() {
-    navigate(`/board?board_id=${board.id}`)
+    navigate(`/app/board?board_id=${board.id}`)
   }
 
   return (

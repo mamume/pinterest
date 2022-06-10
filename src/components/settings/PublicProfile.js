@@ -50,7 +50,7 @@ function PublicProfile() {
       .then(res => res.status)
       .then(statusCode => {
         if (statusCode === 200)
-          window.location.href = `https://pinterest-mamume.herokuapp.com/profile`
+          window.location.href = `${process.env.REACT_APP_BACK_HOST}/app/profile`
       })
   }
 
@@ -134,7 +134,7 @@ function PublicProfile() {
       <TextField
         fullWidth
         label="Username"
-        helperText={`https://pinterest-mamume.herokuapp.com/user_profile/${username}`}
+        helperText={`${process.env.REACT_APP_BACK_HOST}/app/profile/${username}`}
         value={username}
         onChange={e => setUsername(e.target.value)}
       />
