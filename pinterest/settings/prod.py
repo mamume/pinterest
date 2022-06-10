@@ -24,6 +24,6 @@ STATIC_URL = AWS_URL + '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = AWS_URL + '/media/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-django_on_heroku.settings(locals(), staticfiles=False)
+# django_on_heroku.settings(locals(), staticfiles=False)
 
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
