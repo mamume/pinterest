@@ -31,8 +31,8 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_UNSPLASH_ACCESS_KEY)
-    console.log(process.env.REACT_APP_BACK_HOST)
+    // console.log(process.env.REACT_APP_UNSPLASH_ACCESS_KEY)
+    // console.log(process.env.REACT_APP_BACK_HOST)
 
     if (localStorage.getItem('pinterestAccessToken') && host) {
       fetch(`${host}/user_profile/list/`, { headers })
