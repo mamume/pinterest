@@ -22,5 +22,3 @@ STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 MEDIA_URL = '/media/'
 
 django_on_heroku.settings(locals())
-
-BASE_DIR = Path(__file__).resolve().parent.parent.parent

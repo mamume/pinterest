@@ -16,7 +16,7 @@ from pathlib import Path
 
 # import django_on_heroku
 
-# BASE_DIR = Path(__file__).resolve().parent.parent.parent
+BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 CORS_ALLOW_ALL_ORIGINS = True
 
