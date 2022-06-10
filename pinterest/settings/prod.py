@@ -1,7 +1,9 @@
 import dj_database_url
-import django_on_heroku
 
 from .common import *
+
+# import django_on_heroku
+
 
 SECRET_KEY = os.environ.get('DJANGO_SECRET_KEY')
 DEBUG = False
