@@ -14,9 +14,9 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-import django_on_heroku
+# import django_on_heroku
 
-BASE_DIR = Path(__file__).resolve().parent.parent.parent
+# BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 CORS_ALLOW_ALL_ORIGINS = True
 
@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'corsheaders',
     'django_extensions',
     'django_countries',
+    'storages',
 ]
 SITE_ID = 1
 
@@ -76,7 +77,7 @@ TEMPLATES = [
     },
 ]
 
-STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 WSGI_APPLICATION = 'pinterest.wsgi.application'
 
@@ -105,7 +106,7 @@ USE_L10N = True
 
 USE_TZ = True
 
-STATIC_URL = '/static/'
+# STATIC_URL = '/static/'
 # STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
@@ -114,12 +115,12 @@ STATICFILES_DIRS = [
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-django_on_heroku.settings(locals())
+# django_on_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-MEDIA_URL = '/media/'
+# MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'user_profile.User'
 

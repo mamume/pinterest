@@ -20,6 +20,8 @@ django = "==3.2.9"
 djangorestframework-simplejwt = "*"
 install = "*"
 django-on-heroku = "*"
+django-storages = "*"
+boto3 = "*"
 
 [dev-packages]
 autopep8 = "*"
