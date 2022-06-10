@@ -19,7 +19,7 @@ import theme from './styles/Theme';
 
 function App() {
   // const [host] = useState('http://localhost:8000')
-  // const [host] = useState('https://pinterest-mamume.herokuapp.com')
+  // const [host] = useState("https://pinterest-mamume.herokuapp.com")
   const [host] = useState(process.env.REACT_APP_BACK_HOST)
 
   const [headers, setHeaders] = useState({
@@ -31,7 +31,7 @@ function App() {
   const [loading, setLoading] = useState(true)
 
   useEffect(() => {
-    console.log(process.env.REACT_APP_BACK_HOST)
+    console.log(process.env.REACT_APP_UNSPLASH_ACCESS_KEY)
     if (localStorage.getItem('pinterestAccessToken') && host) {
       fetch(`${host}/user_profile/list/`, { headers })
         .then(res => res.json())
