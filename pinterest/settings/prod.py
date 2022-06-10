@@ -10,7 +10,6 @@ ALLOWED_HOSTS = ['pinterest-mamume.herokuapp.com']
 DATABASES = {
     'default': dj_database_url.config(conn_max_age=500, ssl_require=True)
 }
-
 AWS_ACCESS_KEY_ID = os.environ.get('AWS_ACCESS_KEY_ID')
 AWS_SECRET_ACCESS_KEY = os.environ.get('AWS_SECRET_ACCESS_KEY')
 AWS_STORAGE_BUCKET_NAME = os.environ.get('AWS_STORAGE_BUCKET_NAME')
@@ -24,6 +23,4 @@ STATIC_URL = AWS_URL + '/static/'
 STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 MEDIA_URL = AWS_URL + '/media/'
 DEFAULT_FILE_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
-# django_on_heroku.settings(locals(), staticfiles=False)
-
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+django_on_heroku.settings(locals(), staticfiles=False)
