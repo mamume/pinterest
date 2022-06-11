@@ -1,7 +1,9 @@
 import dj_database_url
-from storages.backends.s3boto3 import S3Boto3Storage
 
 from .common import *
+
+# from storages.backends.s3boto3 import S3Boto3Storage
+
 
 # import django_on_heroku
 

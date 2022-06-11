@@ -71,6 +71,7 @@ const Create = ({ open, onClose, addItem, setPinItems }) => {
                 })
                     .then(response => response.json())
                     .then(data => {
+                        console.log(data)
                         addItem(data)
                         if (setPinItems) {
                             setPinItems(pinItems => [data, ...pinItems])

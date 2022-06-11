@@ -53,7 +53,7 @@ function App() {
   }
 
   const addItem = (item) => {
-    item.content_src = `${host}${item.content_src}`
+    // item.content_src = `${item.content_src}`
     setPins(pins => [item, ...pins])
   }
 
