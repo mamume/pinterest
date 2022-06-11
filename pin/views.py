@@ -37,8 +37,6 @@ def pin_create(request):
         return Response(serializer.data, status=status.HTTP_200_OK)
     return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
-# Read
-
 
 @api_view(["GET"])
 def pin_list(request):
