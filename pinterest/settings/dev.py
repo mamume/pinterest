@@ -17,6 +17,5 @@ DATABASES = {
     }
 }
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
 django_on_heroku.settings(locals())
