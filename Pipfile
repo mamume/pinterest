@@ -22,7 +22,6 @@ install = "*"
 django-on-heroku = "*"
 django-storages = "*"
 boto3 = "*"
-pyrebase4 = "*"
 pyrebase = "*"
 
 [dev-packages]
