@@ -33,13 +33,13 @@ AWS_DEFAULT_ACL = None
 # STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 
 
-class PublicMediaStorage(S3Boto3Storage):
-    location = 'media'
-    default_acl = 'public-read'
-    file_overwrite = False
+# class PublicMediaStorage(S3Boto3Storage):
+#     location = 'media'
+#     default_acl = 'public-read'
+#     file_overwrite = False
 
 
 PUBLIC_MEDIA_LOCATION = 'media'
 MEDIA_URL = f'https://{AWS_S3_CUSTOM_DOMAIN}/{PUBLIC_MEDIA_LOCATION}/'
-DEFAULT_FILE_STORAGE = PublicMediaStorage
+STATICFILES_STORAGE = 'storages.backends.s3boto3.S3Boto3Storage'
 # django_on_heroku.settings(locals(), staticfiles=False)
