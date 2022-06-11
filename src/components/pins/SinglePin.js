@@ -119,7 +119,7 @@ function SinglePin({ onOpenPinModal, img, external_link, id, boards, sub_board, 
             </div>
           </div>
 
-          <img style={{ minHeight: 236, }} src={img} alt="" />
+          <img style={{ minHeight: 236, }} src={img.slice(38)} alt="" />
         </CardWrapper>
       </Wrapper >
       <CreateBoard
