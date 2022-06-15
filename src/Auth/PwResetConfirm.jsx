@@ -30,7 +30,6 @@ class PwResetConfirmDone extends React.Component {
                 <Button
                     LinkComponent={Link}
                     to="/"
-                    // onClick={()=> window.location.href="/"}
                     size="large"
                     variant="contained"
                     sx={{

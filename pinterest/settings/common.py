@@ -14,8 +14,6 @@ import os
 from datetime import timedelta
 from pathlib import Path
 
-# import django_on_heroku
-
 BASE_DIR = Path(__file__).resolve().parent.parent.parent
 
 CORS_ALLOW_ALL_ORIGINS = True
@@ -107,21 +105,16 @@ USE_L10N = True
 USE_TZ = True
 
 STATIC_URL = '/static/'
-# STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'build/static'),
     os.path.join(BASE_DIR, 'build'),
-    # os.path.join(BASE_DIR, 'static'),
 ]
 STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 
-# django_on_heroku.settings(locals())
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-# MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
-# MEDIA_URL = '/media/'
 
 AUTH_USER_MODEL = 'user_profile.User'
 

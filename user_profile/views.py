@@ -19,12 +19,9 @@ class ProfileViewSet(ModelViewSet):
     def get_queryset(self):
         username = self.request.query_params.get('username')
         if username:
-            print('COUNT:', Profile.objects.filter(
-                user__username=username).count())
             return Profile.objects.filter(user__username=username)
 
         return Profile.objects.filter(user=self.request.user.id)
-        # return get_object_or_404(Profile, user=self.request.user.id)
 
     def get_serializer_context(self):
         return {'request': self.request}
