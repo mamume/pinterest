@@ -16,7 +16,7 @@ gunicorn = "*"
 dj-database-url = "*"
 whitenoise = {extras = ["brotli"], version = "*"}
 djoser = "*"
-django = "==3.2.9"
+django = "==3.2.17"
 djangorestframework-simplejwt = "*"
 install = "*"
 django-on-heroku = "*"
